@@ -523,7 +523,6 @@
       $$('.server-btn').forEach((b, i) => b.classList.toggle('on', i === S.activeServer));
     };
 
-    // Horizontal card HTML
     const hCardH = (it) => {
       const t = it.title || it.name || '?'; const y = (it.release_date || it.first_air_date || '').slice(0,4);
       const img = it.poster_path ? `${IMG}/w342${it.poster_path}` : null;
@@ -531,7 +530,6 @@
       return `<div class="h-card" onclick="openD(${it.id},'${mt}')"><div class="h-card-poster">${img ? `<img src="${img}" alt="" loading="lazy">` : '<div style="height:100%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:var(--bg2)">🎬</div>'}<div class="h-card-badges"><span class="h-card-type">${mt==='movie'?'MOVIE':'SERIES'}</span><span class="h-card-rating"><i class="fas fa-star" style="font-size:0.35rem"></i>${r}</span></div></div><div class="h-card-info"><div class="h-card-title">${t}</div><div class="h-card-year">${y||'TBA'}</div></div></div>`;
     };
 
-    // Featured hero HTML
     const featuredHero = (item) => {
       const t = item.title || item.name || '?';
       const bg = item.backdrop_path ? `${IMG}/w780${item.backdrop_path}` : (item.poster_path ? `${IMG}/w780${item.poster_path}` : '');
@@ -549,7 +547,7 @@
       </div>`;
     };
 
-    // Build trending tab
+    // Updated buildTrendingTab: only featured hero + two horizontal rows, no "Trending Today" grid
     const buildTrendingTab = (data) => {
       const top = data.items[0];
       const movies = data.movies.slice(0, 15);
@@ -566,13 +564,9 @@
         html += `<div class="trending-row"><div class="trending-row-header"><div class="trending-row-title"><i class="fas fa-tv"></i> Trending TV Shows</div></div><div class="trending-row-scroll">${tvshows.map(hCardH).join('')}</div></div>`;
       }
       
-      // Also add a "Trending Today" combined grid below
-      html += `<div class="section-top" style="margin-top:0.5rem"><div class="section-title"><span class="section-icon"><i class="fas fa-chart-line"></i></span>Trending Today</div><span class="section-count" id="secCount"></span></div><div class="grid" id="mediaGrid"></div>`;
-      
       return html;
     };
 
-    // Build regular grid tab (Movies, Series, Favorites, Search)
     const buildRegularTab = (label, icon) => {
       return `<div class="section-top"><div class="section-title"><span class="section-icon"><i class="fas ${icon}"></i></span>${label}</div><span class="section-count" id="secCount"></span></div><div class="grid" id="mediaGrid"></div>`;
     };
@@ -608,14 +602,7 @@
         hp.innerHTML = `<div class="empty"><span class="empty-icon"><i class="fas fa-spinner fa-spin" style="color:var(--accent)"></i></span></div>`;
         try {
           const d = await trend(1);
-          S.more = d.page < d.max;
           hp.innerHTML = buildTrendingTab(d);
-          // Render the "Trending Today" grid below
-          render(d.items);
-          // Add scroll sentinel for infinite scroll
-          const grid = $('#mediaGrid');
-          if (grid) grid.insertAdjacentHTML('afterend', '<div id="scrollSentinel" style="height:1px"></div>');
-          setupScroll();
           hideSplash();
         } catch(e) { toast(e.message, true); hp.innerHTML = `<div class="empty" style="margin:0.75rem"><span class="empty-icon">⚠️</span><p class="empty-title">Error</p><p class="empty-desc">${e.message}</p></div>`; hideSplash(); }
       } else {
