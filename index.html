@@ -75,17 +75,130 @@
     @keyframes dotBounce { 0%, 80%, 100% { transform: scale(0.6); opacity: 0.3; } 40% { transform: scale(1.2); opacity: 1; background: var(--accent); } }
 
     /* Main */
-    .main { padding: 1rem 0.75rem 1rem; }
+    .main { padding: 0.5rem 0 1rem; }
 
+    /* Featured Hero */
+    .featured-hero {
+      position: relative;
+      margin: 0 0.75rem 1.25rem;
+      border-radius: var(--radius2);
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      background-size: cover;
+      background-position: center 20%;
+      cursor: pointer;
+    }
+    .featured-hero:active { transform: scale(0.98); }
+    .featured-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(3,5,10,0.95) 0%, rgba(3,5,10,0.4) 50%, rgba(3,5,10,0.1) 100%);
+    }
+    .featured-hero-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1rem; z-index: 2;
+    }
+    .featured-hero-badge {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      background: var(--accent); color: var(--bg);
+      padding: 0.2rem 0.6rem; border-radius: 50px;
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.03em;
+      margin-bottom: 0.5rem;
+    }
+    .featured-hero-title {
+      font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em;
+      line-height: 1.2; margin-bottom: 0.35rem;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .featured-hero-meta {
+      display: flex; gap: 0.75rem; flex-wrap: wrap; font-size: 0.7rem; color: var(--text2);
+      margin-bottom: 0.6rem;
+    }
+    .featured-hero-meta span { display: flex; align-items: center; gap: 0.2rem; }
+    .featured-hero-play {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--accent); color: var(--bg);
+      padding: 0.5rem 1.2rem; border-radius: 50px;
+      font-weight: 700; font-size: 0.78rem; cursor: pointer;
+      border: none; font-family: inherit;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+    .featured-hero-play:active { transform: scale(0.95); }
+
+    /* Horizontal scroll rows */
+    .trending-row {
+      margin-bottom: 1.25rem;
+      padding: 0 0.75rem;
+    }
+    .trending-row-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+    .trending-row-title {
+      font-size: 1rem; font-weight: 700; letter-spacing: -0.02em;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .trending-row-title i { color: var(--accent); font-size: 0.85rem; }
+    .trending-row-scroll {
+      display: flex; gap: 0.6rem; overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0.25rem;
+      scrollbar-width: none;
+    }
+    .trending-row-scroll::-webkit-scrollbar { display: none; }
+
+    /* Horizontal card */
+    .h-card {
+      flex-shrink: 0;
+      width: 120px;
+      background: var(--bg3);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      scroll-snap-align: start;
+      transition: transform 0.15s;
+    }
+    .h-card:active { transform: scale(0.96); }
+    .h-card-poster {
+      position: relative;
+      aspect-ratio: 2/3;
+      background: var(--bg2);
+      overflow: hidden;
+    }
+    .h-card-poster img { width: 100%; height: 100%; object-fit: cover; }
+    .h-card-badges {
+      position: absolute; top: 4px; left: 4px; right: 4px;
+      display: flex; justify-content: space-between; z-index: 2; pointer-events: none;
+    }
+    .h-card-type {
+      background: rgba(0,0,0,0.75); backdrop-filter: blur(4px);
+      color: var(--accent2); padding: 0.12rem 0.35rem; border-radius: 50px;
+      font-size: 0.45rem; font-weight: 700; letter-spacing: 0.03em;
+    }
+    .h-card-rating {
+      background: rgba(0,0,0,0.75); backdrop-filter: blur(4px);
+      color: var(--green2); padding: 0.12rem 0.35rem; border-radius: 50px;
+      font-size: 0.5rem; font-weight: 700; display: flex; align-items: center; gap: 0.12rem;
+    }
+    .h-card-info { padding: 0.5rem 0.55rem; }
+    .h-card-title {
+      font-weight: 600; font-size: 0.7rem; line-height: 1.2;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      margin-bottom: 0.1rem;
+    }
+    .h-card-year { font-size: 0.6rem; color: var(--text3); }
+
+    /* Regular grid (for non-trending tabs) */
     .section-top {
       display: flex; align-items: center; justify-content: space-between;
       margin-bottom: 1rem; padding: 0 0.25rem;
     }
-    .section-title { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.5rem; }
+    .section-title { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.5rem; }
     .section-icon { color: var(--accent); font-size: 1rem; }
     .section-count { font-size: 0.75rem; color: var(--text3); font-weight: 500; }
 
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; padding: 0 0.75rem; }
 
     .card {
       background: var(--bg3); border-radius: var(--radius); overflow: hidden;
@@ -147,7 +260,7 @@
     .detail-hero {
       position: relative; aspect-ratio: 16/10; background-size: cover;
       background-position: center 20%; border-radius: var(--radius2);
-      overflow: hidden; margin-bottom: 1rem; display: flex; align-items: flex-end;
+      overflow: hidden; margin: 0 0.75rem 1rem; display: flex; align-items: flex-end;
     }
     .detail-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--bg) 0%, rgba(3,5,10,0.7) 40%, rgba(3,5,10,0.2) 100%); }
     .detail-hero-info { position: relative; z-index: 2; padding: 0.875rem; width: 100%; display: flex; gap: 0.75rem; align-items: flex-end; }
@@ -164,14 +277,9 @@
     .detail-overview { color: var(--text2); font-size: 0.82rem; line-height: 1.6; margin-bottom: 1rem; }
     .detail-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
 
-    /* Embed player */
     .detail-player-wrap {
-      display: none;
-      margin-bottom: 1rem;
-      background: #000;
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--border2);
+      display: none; margin-bottom: 1rem; background: #000;
+      border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border2);
     }
     .detail-player-wrap.on { display: block; }
     .detail-player-wrap .player-frame-wrap { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; }
@@ -193,7 +301,6 @@
       background-repeat: no-repeat; background-position: right 0.85rem center; padding-right: 2.2rem;
     }
     .season-select:focus { border-color: var(--accent); }
-
     .ep-list { display: grid; gap: 0.5rem; }
     .ep-card {
       background: var(--bg3); border: 1px solid var(--border);
@@ -214,11 +321,9 @@
     .ep-meta { font-size: 0.63rem; color: var(--text3); margin-top: 1px; }
     .ep-overview { font-size: 0.63rem; color: var(--text3); margin-top: 3px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-    /* Player Overlay */
     .player-overlay {
-      display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.92); z-index: 1000;
-      justify-content: center; align-items: center;
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92);
+      z-index: 1000; justify-content: center; align-items: center;
       padding: 1rem; backdrop-filter: blur(8px);
     }
     .player-overlay.on { display: flex; animation: playerFadeIn 0.25s ease; }
@@ -246,7 +351,6 @@
     .player-footer-text { font-size: 0.65rem; color: var(--text3); flex: 1; text-align: center; }
     .player-footer-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
 
-    /* Bottom Bar */
     .bottom-bar {
       position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
       width: 100%; max-width: 480px;
@@ -307,11 +411,7 @@
   <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg"></span><button class="toast-close" onclick="dismissToast()"><i class="fas fa-times"></i></button></div>
 
   <main class="main">
-    <div class="home-page" id="homePage">
-      <div class="section-top"><div class="section-title"><span class="section-icon" id="secIcon"><i class="fas fa-fire"></i></span><span id="secTitle">Trending Now</span></div><span class="section-count" id="secCount"></span></div>
-      <div class="grid" id="mediaGrid"></div>
-      <div id="scrollSentinel" style="height:1px"></div>
-    </div>
+    <div class="home-page" id="homePage"></div>
     <div class="detail-page" id="detailPage"></div>
   </main>
 
@@ -337,9 +437,8 @@
   </div>
 
   <script>
-    // ========== CONFIGURATION ==========
     const CONFIG = {
-      TMDB_API_KEY: '77c1a81838fea47869506ff798f95404',
+      TMDB_API_KEY: 'YOUR_TMDB_API_KEY_HERE',
       SERVERS: {
         movie: [
             { name: 'Server 1', url: 'https://vidfast.vc/movie/{id}?autoPlay=true' },
@@ -359,7 +458,6 @@
         ]
       }
     };
-    // ==================================
 
     const TMDB = 'https://api.themoviedb.org/3';
     const IMG = 'https://image.tmdb.org/t/p';
@@ -388,85 +486,98 @@
       return r.json();
     };
 
-    const trend = async (p = 1) => { const [m, t] = await Promise.all([api(`/trending/movie/week?page=${p}`), api(`/trending/tv/week?page=${p}`)]); return { items: [...m.results.map(i=>({...i,mt:'movie'})), ...t.results.map(i=>({...i,mt:'tv'}))].sort((a,b)=>(b.popularity||0)-(a.popularity||0)), page:p, max:Math.max(m.total_pages,t.total_pages) }; };
+    const trend = async (p = 1) => { const [m, t] = await Promise.all([api(`/trending/movie/week?page=${p}`), api(`/trending/tv/week?page=${p}`)]); return { movies: m.results.map(i=>({...i,mt:'movie'})), tvshows: t.results.map(i=>({...i,mt:'tv'})), items: [...m.results.map(i=>({...i,mt:'movie'})), ...t.results.map(i=>({...i,mt:'tv'}))].sort((a,b)=>(b.popularity||0)-(a.popularity||0)), page:p, max:Math.max(m.total_pages,t.total_pages) }; };
     const srch = async (q, p = 1) => { const [m, t] = await Promise.all([api(`/search/movie?query=${encodeURIComponent(q)}&page=${p}`), api(`/search/tv?query=${encodeURIComponent(q)}&page=${p}`)]); return { items: [...m.results.map(i=>({...i,mt:'movie'})), ...t.results.map(i=>({...i,mt:'tv'}))].sort((a,b)=>(b.popularity||0)-(a.popularity||0)), page:p, max:Math.max(m.total_pages,t.total_pages) }; };
     const detail = async (id, t) => { const d = await api(`/${t}/${id}`); if (t === 'tv' && d.number_of_seasons) { const ps = []; for (let i = 1; i <= Math.min(d.number_of_seasons, 60); i++) ps.push(api(`/tv/${id}/season/${i}`).catch(() => null)); d._ss = await Promise.all(ps); } return d; };
     const favT = (it) => { const ix = S.fav.findIndex(f => f.id === it.id && f.mt === it.mt); if (ix >= 0) S.fav.splice(ix, 1); else S.fav.unshift({ id:it.id, mt:it.mt, title:it.title||it.name, poster:it.poster_path, date:Date.now() }); localStorage.setItem('ss_f', JSON.stringify(S.fav)); upBadges(); return ix < 0; };
     const isFav = (id, mt) => S.fav.some(f => f.id === id && f.mt === mt);
     const upBadges = () => { const c = S.fav.length; const m = $('#favBadgeMob'); if (m) { m.textContent = c; if (c > 0) m.classList.add('on'); else m.classList.remove('on'); } };
 
-    // Get embed URL based on server index
     const getEmbedUrl = (serverIdx, id, mt, sn, ep) => {
       const servers = mt === 'movie' ? CONFIG.SERVERS.movie : CONFIG.SERVERS.tv;
       const server = servers[serverIdx] || servers[0];
       let url = server.url.replace('{id}', id);
-      if (mt === 'tv') {
-        url = url.replace('{season}', sn || 1).replace('{episode}', ep || 1);
-      }
+      if (mt === 'tv') url = url.replace('{season}', sn || 1).replace('{episode}', ep || 1);
       return url;
     };
 
-    // Build server buttons HTML
     const buildServerButtons = (id, mt, sn, ep) => {
       const servers = mt === 'movie' ? CONFIG.SERVERS.movie : CONFIG.SERVERS.tv;
-      return `<div class="server-section">
-        <div class="server-section-label"><i class="fas fa-server"></i> Switch Server</div>
-        <div class="server-list">
-          ${servers.map((s, i) => `<button class="server-btn ${i === S.activeServer ? 'on' : ''}" onclick="switchServer(${i}, ${id}, '${mt}', ${sn||1}, ${ep||1})"><i class="fas fa-play-circle"></i> ${s.name}</button>`).join('')}
+      return `<div class="server-section"><div class="server-section-label"><i class="fas fa-server"></i> Switch Server</div><div class="server-list">${servers.map((s, i) => `<button class="server-btn ${i === S.activeServer ? 'on' : ''}" onclick="switchServer(${i}, ${id}, '${mt}', ${sn||1}, ${ep||1})"><i class="fas fa-play-circle"></i> ${s.name}</button>`).join('')}</div></div>`;
+    };
+
+    window.switchServer = (serverIdx, id, mt, sn, ep) => {
+      S.activeServer = serverIdx; S.currentMediaId = id; S.currentMediaType = mt; S.currentSeason = sn || 1; S.currentEpisode = ep || 1;
+      const url = getEmbedUrl(serverIdx, id, mt, S.currentSeason, S.currentEpisode);
+      const frame = $('#detailPlayerFrame'), loading = $('#detailPlayerLoading'), wrap = $('#detailPlayerWrap');
+      if (wrap) wrap.classList.add('on');
+      if (frame) { if (loading) loading.classList.remove('hidden'); frame.src = url; frame.onload = () => { if (loading) loading.classList.add('hidden'); }; setTimeout(() => { if (loading) loading.classList.add('hidden'); }, 5000); }
+      $$('.server-btn').forEach((b, i) => b.classList.toggle('on', i === serverIdx));
+    };
+
+    window.showEmbedPlayer = (id, mt, sn, ep) => {
+      S.currentMediaId = id; S.currentMediaType = mt; S.currentSeason = sn || 1; S.currentEpisode = ep || 1;
+      const url = getEmbedUrl(S.activeServer, id, mt, S.currentSeason, S.currentEpisode);
+      const wrap = $('#detailPlayerWrap'), frame = $('#detailPlayerFrame'), loading = $('#detailPlayerLoading');
+      if (wrap && frame) { wrap.classList.add('on'); if (loading) loading.classList.remove('hidden'); frame.src = url; frame.onload = () => { if (loading) loading.classList.add('hidden'); }; setTimeout(() => { if (loading) loading.classList.add('hidden'); }, 5000); wrap.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      $$('.server-btn').forEach((b, i) => b.classList.toggle('on', i === S.activeServer));
+    };
+
+    // Horizontal card HTML
+    const hCardH = (it) => {
+      const t = it.title || it.name || '?'; const y = (it.release_date || it.first_air_date || '').slice(0,4);
+      const img = it.poster_path ? `${IMG}/w342${it.poster_path}` : null;
+      const r = it.vote_average?.toFixed(1) || '—'; const mt = it.mt || it.media_type;
+      return `<div class="h-card" onclick="openD(${it.id},'${mt}')"><div class="h-card-poster">${img ? `<img src="${img}" alt="" loading="lazy">` : '<div style="height:100%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:var(--bg2)">🎬</div>'}<div class="h-card-badges"><span class="h-card-type">${mt==='movie'?'MOVIE':'SERIES'}</span><span class="h-card-rating"><i class="fas fa-star" style="font-size:0.35rem"></i>${r}</span></div></div><div class="h-card-info"><div class="h-card-title">${t}</div><div class="h-card-year">${y||'TBA'}</div></div></div>`;
+    };
+
+    // Featured hero HTML
+    const featuredHero = (item) => {
+      const t = item.title || item.name || '?';
+      const bg = item.backdrop_path ? `${IMG}/w780${item.backdrop_path}` : (item.poster_path ? `${IMG}/w780${item.poster_path}` : '');
+      const rating = item.vote_average?.toFixed(1) || '—';
+      const year = (item.release_date || item.first_air_date || '').slice(0,4);
+      const mt = item.mt || item.media_type;
+      return `<div class="featured-hero" style="background-image:url(${bg})" onclick="openD(${item.id},'${mt}')">
+        <div class="featured-hero-overlay"></div>
+        <div class="featured-hero-content">
+          <div class="featured-hero-badge"><i class="fas fa-fire"></i> #1 Trending ${mt==='movie'?'Movie':'TV Show'}</div>
+          <div class="featured-hero-title">${t}</div>
+          <div class="featured-hero-meta"><span><i class="fas fa-star" style="color:var(--green2);font-size:0.55rem"></i> ${rating}</span><span>${year}</span></div>
+          <button class="featured-hero-play" onclick="event.stopPropagation();window.showEmbedPlayer(${item.id},'${mt}',1,1)"><i class="fas fa-play"></i> Watch Now</button>
         </div>
       </div>`;
     };
 
-    // Switch server - FIXED: uses the current season/episode from state
-    window.switchServer = (serverIdx, id, mt, sn, ep) => {
-      S.activeServer = serverIdx;
-      S.currentMediaId = id;
-      S.currentMediaType = mt;
-      S.currentSeason = sn || 1;
-      S.currentEpisode = ep || 1;
+    // Build trending tab
+    const buildTrendingTab = (data) => {
+      const top = data.items[0];
+      const movies = data.movies.slice(0, 15);
+      const tvshows = data.tvshows.slice(0, 15);
       
-      const url = getEmbedUrl(serverIdx, id, mt, S.currentSeason, S.currentEpisode);
-      const frame = $('#detailPlayerFrame');
-      const loading = $('#detailPlayerLoading');
-      const wrap = $('#detailPlayerWrap');
+      let html = '';
+      if (top) html += featuredHero(top);
       
-      if (wrap) wrap.classList.add('on');
-      if (frame) {
-        if (loading) loading.classList.remove('hidden');
-        frame.src = url;
-        frame.onload = () => { if (loading) loading.classList.add('hidden'); };
-        setTimeout(() => { if (loading) loading.classList.add('hidden'); }, 5000);
+      if (movies.length) {
+        html += `<div class="trending-row"><div class="trending-row-header"><div class="trending-row-title"><i class="fas fa-film"></i> Trending Movies</div></div><div class="trending-row-scroll">${movies.map(hCardH).join('')}</div></div>`;
       }
       
-      // Update active button
-      $$('.server-btn').forEach((b, i) => b.classList.toggle('on', i === serverIdx));
-    };
-
-    // Show embed player
-    window.showEmbedPlayer = (id, mt, sn, ep) => {
-      S.currentMediaId = id;
-      S.currentMediaType = mt;
-      S.currentSeason = sn || 1;
-      S.currentEpisode = ep || 1;
-      
-      const url = getEmbedUrl(S.activeServer, id, mt, S.currentSeason, S.currentEpisode);
-      const wrap = $('#detailPlayerWrap');
-      const frame = $('#detailPlayerFrame');
-      const loading = $('#detailPlayerLoading');
-      
-      if (wrap && frame) {
-        wrap.classList.add('on');
-        if (loading) loading.classList.remove('hidden');
-        frame.src = url;
-        frame.onload = () => { if (loading) loading.classList.add('hidden'); };
-        setTimeout(() => { if (loading) loading.classList.add('hidden'); }, 5000);
-        wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (tvshows.length) {
+        html += `<div class="trending-row"><div class="trending-row-header"><div class="trending-row-title"><i class="fas fa-tv"></i> Trending TV Shows</div></div><div class="trending-row-scroll">${tvshows.map(hCardH).join('')}</div></div>`;
       }
       
-      // Update server buttons active state
-      $$('.server-btn').forEach((b, i) => b.classList.toggle('on', i === S.activeServer));
+      // Also add a "Trending Today" combined grid below
+      html += `<div class="section-top" style="margin-top:0.5rem"><div class="section-title"><span class="section-icon"><i class="fas fa-chart-line"></i></span>Trending Today</div><span class="section-count" id="secCount"></span></div><div class="grid" id="mediaGrid"></div>`;
+      
+      return html;
     };
 
+    // Build regular grid tab (Movies, Series, Favorites, Search)
+    const buildRegularTab = (label, icon) => {
+      return `<div class="section-top"><div class="section-title"><span class="section-icon"><i class="fas ${icon}"></i></span>${label}</div><span class="section-count" id="secCount"></span></div><div class="grid" id="mediaGrid"></div>`;
+    };
+
+    const render = (items, app) => { const g = $('#mediaGrid'); if (!g) return; if (!app) g.innerHTML = ''; if (!items.length && !app) { g.innerHTML = `<div class="empty"><span class="empty-icon">🔍</span><p class="empty-title">Nothing here</p><p class="empty-desc">Try another filter</p></div>`; const sc = $('#secCount'); if (sc) sc.textContent=''; return; } g.innerHTML += items.map(cardH).join(''); const sc = $('#secCount'); if (sc) sc.textContent = g.children.length + ' titles'; };
     const cardH = (it) => {
       const t = it.title || it.name || '?'; const y = (it.release_date || it.first_air_date || '').slice(0,4);
       const img = it.poster_path ? `${IMG}/w342${it.poster_path}` : (it.poster || null);
@@ -474,25 +585,60 @@
       return `<div class="card" onclick="openD(${it.id},'${mt}')"><div class="card-poster">${img ? `<img src="${img}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='<div style=height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;background:var(--bg2)>🎬</div>'">` : '<div style="height:100%;display:flex;align-items:center;justify-content:center;font-size:2rem;background:var(--bg2)">🎬</div>'}<div class="card-badges"><span class="card-type">${mt==='movie'?'MOVIE':'SERIES'}</span><span class="card-rating"><i class="fas fa-star" style="font-size:0.4rem"></i>${r}</span></div><button class="card-fav-btn ${fv?'on':''}" onclick="event.stopPropagation();favClk(this,${it.id},'${mt}','${t.replace(/'/g,"\\'")}','${img||''}')"><i class="fas fa-heart"></i></button></div><div class="card-info"><div class="card-title">${t}</div><div class="card-year">${y||'TBA'}</div></div></div>`;
     };
 
-    const render = (items, app) => { const g = $('#mediaGrid'); if (!app) g.innerHTML = ''; if (!items.length && !app) { g.innerHTML = `<div class="empty"><span class="empty-icon">🔍</span><p class="empty-title">Nothing here</p><p class="empty-desc">Try another filter</p></div>`; $('#secCount').textContent=''; return; } g.innerHTML += items.map(cardH).join(''); $('#secCount').textContent = g.children.length + ' titles'; };
-    const setupScroll = () => { if (S.obs) S.obs.disconnect(); const sent = $('#scrollSentinel'); if (!sent || S.f === 'fav') return; S.obs = new IntersectionObserver(([e]) => { if (e.isIntersecting && S.more && !S.load) loadMore(); }, { rootMargin: '400px' }); S.obs.observe(sent); };
+    const setupScroll = () => { if (S.obs) S.obs.disconnect(); const sent = document.getElementById('scrollSentinel'); if (!sent || S.f === 'fav') return; S.obs = new IntersectionObserver(([e]) => { if (e.isIntersecting && S.more && !S.load) loadMore(); }, { rootMargin: '400px' }); S.obs.observe(sent); };
 
     const loadInit = async (route, filter) => {
       S.f = filter; S.p = 1; S.more = true; S.load = false;
       if (filter !== 'fav') { S.q = ''; $('#searchInput').value = ''; $('#searchClear').classList.remove('on'); }
       upPills(route, filter);
-      if (route === 'fav') { renderFavs(); hideSplash(); return; }
-      if (!S.key || S.key === 'YOUR_TMDB_API_KEY_HERE') { $('#mediaGrid').innerHTML = `<div class="empty"><span class="empty-icon">🔑</span><p class="empty-title">API Key Needed</p><p class="empty-desc">Edit the code and add your TMDB API key</p></div>`; $('#secCount').textContent=''; hideSplash(); return; }
-      const titles = { all:'Trending Now', movie:'Popular Movies', tv:'Popular Series' };
-      const icons = { all:'fa-fire', movie:'fa-film', tv:'fa-tv' };
-      $('#secTitle').textContent = titles[filter]||'Trending'; $('#secIcon').innerHTML = `<i class="fas ${icons[filter]||'fa-fire'}"></i>`;
-      $('#mediaGrid').innerHTML = `<div class="empty"><span class="empty-icon"><i class="fas fa-spinner fa-spin" style="color:var(--accent)"></i></span></div>`; $('#secCount').textContent = '';
-      try { const d = await trend(1); const items = filter === 'all' ? d.items : d.items.filter(i => i.mt === filter); S.more = d.page < d.max; render(items); setupScroll(); hideSplash(); }
-      catch(e) { toast(e.message, true); $('#mediaGrid').innerHTML = `<div class="empty"><span class="empty-icon">⚠️</span><p class="empty-title">Error</p><p class="empty-desc">${e.message}</p></div>`; hideSplash(); }
+      if (route === 'fav') { 
+        const hp = $('#homePage');
+        hp.innerHTML = buildRegularTab('My Favorites', 'fa-heart');
+        renderFavs(); hideSplash(); return; 
+      }
+      if (!S.key || S.key === 'YOUR_TMDB_API_KEY_HERE') { 
+        const hp = $('#homePage');
+        hp.innerHTML = `<div class="empty" style="margin:0.75rem"><span class="empty-icon">🔑</span><p class="empty-title">API Key Needed</p><p class="empty-desc">Edit the code and add your TMDB API key</p></div>`; 
+        hideSplash(); return; 
+      }
+      
+      const hp = $('#homePage');
+      
+      if (filter === 'all') {
+        hp.innerHTML = `<div class="empty"><span class="empty-icon"><i class="fas fa-spinner fa-spin" style="color:var(--accent)"></i></span></div>`;
+        try {
+          const d = await trend(1);
+          S.more = d.page < d.max;
+          hp.innerHTML = buildTrendingTab(d);
+          // Render the "Trending Today" grid below
+          render(d.items);
+          // Add scroll sentinel for infinite scroll
+          const grid = $('#mediaGrid');
+          if (grid) grid.insertAdjacentHTML('afterend', '<div id="scrollSentinel" style="height:1px"></div>');
+          setupScroll();
+          hideSplash();
+        } catch(e) { toast(e.message, true); hp.innerHTML = `<div class="empty" style="margin:0.75rem"><span class="empty-icon">⚠️</span><p class="empty-title">Error</p><p class="empty-desc">${e.message}</p></div>`; hideSplash(); }
+      } else {
+        const titles = { movie:'Popular Movies', tv:'Popular Series' };
+        const icons = { movie:'fa-film', tv:'fa-tv' };
+        hp.innerHTML = buildRegularTab(titles[filter]||'Trending', icons[filter]||'fa-star');
+        const g = $('#mediaGrid');
+        if (g) g.innerHTML = `<div class="empty"><span class="empty-icon"><i class="fas fa-spinner fa-spin" style="color:var(--accent)"></i></span></div>`;
+        try {
+          const d = await trend(1);
+          const items = d.items.filter(i => i.mt === filter);
+          S.more = d.page < d.max;
+          render(items);
+          const grid2 = $('#mediaGrid');
+          if (grid2) grid2.insertAdjacentHTML('afterend', '<div id="scrollSentinel" style="height:1px"></div>');
+          setupScroll();
+          hideSplash();
+        } catch(e) { toast(e.message, true); if (g) g.innerHTML = `<div class="empty"><span class="empty-icon">⚠️</span><p class="empty-title">Error</p><p class="empty-desc">${e.message}</p></div>`; hideSplash(); }
+      }
     };
 
     const loadMore = async () => { if (S.load || !S.more || S.f === 'fav') return; S.load = true; S.p++; try { const d = S.q ? await srch(S.q, S.p) : await trend(S.p); const items = S.f === 'all' ? d.items : d.items.filter(i => i.mt === S.f); S.more = d.page < d.max; render(items, true); } catch(e) { S.p--; } S.load = false; };
-    const renderFavs = () => { $('#secTitle').textContent = 'My Favorites'; $('#secIcon').innerHTML = '<i class="fas fa-heart"></i>'; if (!S.fav.length) { $('#mediaGrid').innerHTML = `<div class="empty"><span class="empty-icon">💝</span><p class="empty-title">No Favorites</p><p class="empty-desc">Tap ♡ on any title</p></div>`; $('#secCount').textContent=''; return; } render(S.fav.map(f => ({ id:f.id, mt:f.mt, title:f.title, name:f.title, poster_path:f.poster, poster:f.poster, vote_average:null }))); };
+    const renderFavs = () => { if (!S.fav.length) { const g = $('#mediaGrid'); if (g) g.innerHTML = `<div class="empty"><span class="empty-icon">💝</span><p class="empty-title">No Favorites</p><p class="empty-desc">Tap ♡ on any title</p></div>`; return; } render(S.fav.map(f => ({ id:f.id, mt:f.mt, title:f.title, name:f.title, poster_path:f.poster, poster:f.poster, vote_average:null }))); };
 
     const searchType = async (v) => {
       const dd = $('#searchDrop'), cb = $('#searchClear');
@@ -506,10 +652,12 @@
 
     const execSearch = async () => {
       const q = $('#searchInput').value.trim(); if (!q) return;
-      S.q = q; S.f = 'all'; S.p = 1; S.more = true; $('#searchDrop').classList.remove('on');
-      $('#secTitle').textContent = `"${q}"`; $('#secIcon').innerHTML = '<i class="fas fa-search"></i>';
-      $('#mediaGrid').innerHTML = `<div class="empty"><span class="empty-icon"><i class="fas fa-spinner fa-spin" style="color:var(--accent)"></i></span></div>`; $('#secCount').textContent = '';
-      try { const d = await srch(q, 1); S.more = d.page < d.max; render(d.items); setupScroll(); } catch(e) { toast(e.message, true); }
+      S.q = q; S.f = 'search'; S.p = 1; S.more = true; $('#searchDrop').classList.remove('on');
+      const hp = $('#homePage');
+      hp.innerHTML = buildRegularTab(`"${q}"`, 'fa-search');
+      const g = $('#mediaGrid');
+      if (g) g.innerHTML = `<div class="empty"><span class="empty-icon"><i class="fas fa-spinner fa-spin" style="color:var(--accent)"></i></span></div>`;
+      try { const d = await srch(q, 1); S.more = d.page < d.max; render(d.items); const g2 = $('#mediaGrid'); if (g2) g2.insertAdjacentHTML('afterend', '<div id="scrollSentinel" style="height:1px"></div>'); setupScroll(); } catch(e) { toast(e.message, true); }
     };
 
     window.openD = async (id, mt) => {
@@ -528,7 +676,6 @@
         const rt = d.runtime ? `${Math.floor(d.runtime/60)}h ${d.runtime%60}m` : ''; const ss = d.number_of_seasons || 0;
         const genres = d.genres?.map(g => g.name) || []; const ov = d.overview || 'No description.';
         const fv = isFav(id, mt); const allSs = d._ss || [];
-        
         let html = `<div class="detail-hero" ${bg?`style="background-image:url(${bg})"`:''}>
           <button class="detail-close-btn" onclick="closeD()"><i class="fas fa-times"></i></button>
           <div class="detail-hero-overlay"></div><div class="detail-hero-info">
@@ -542,81 +689,37 @@
             <button class="btn btn-ghost btn-sm" id="dFavBtn" onclick="favClk(this,${id},'${mt}','${t.replace(/'/g,"\\'")}','${poster}')"><i class="fas fa-heart"></i> ${fv?'Saved':'Save'}</button>
           </div>
           ${buildServerButtons(id, mt, 1, 1)}
-          <div class="detail-player-wrap" id="detailPlayerWrap">
-            <div class="player-frame-wrap">
-              <div class="detail-player-loading" id="detailPlayerLoading"><i class="fas fa-spinner"></i><span>Loading player...</span></div>
-              <iframe id="detailPlayerFrame" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-            </div>
-          </div>`;
-
+          <div class="detail-player-wrap" id="detailPlayerWrap"><div class="player-frame-wrap"><div class="detail-player-loading" id="detailPlayerLoading"><i class="fas fa-spinner"></i><span>Loading player...</span></div><iframe id="detailPlayerFrame" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe></div></div>`;
         if (mt === 'tv' && allSs.length > 0) {
-          html += `<div class="seasons-section"><h3 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.4rem"><i class="fas fa-list" style="color:var(--accent)"></i> Episodes</h3>
-          <div class="season-dropdown-wrap"><label>Season</label><select class="season-select" id="seasonSelect" onchange="changeSeason(${id}, this.value)">${allSs.filter(s=>s).map((s,i)=>`<option value="${s.season_number}" ${i===0?'selected':''}>Season ${s.season_number}</option>`).join('')}</select></div>
-          <div class="ep-list" id="epL"><div class="empty"><i class="fas fa-spinner fa-spin" style="color:var(--accent)"></i></div></div></div>`;
+          html += `<div class="seasons-section"><h3 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.4rem"><i class="fas fa-list" style="color:var(--accent)"></i> Episodes</h3><div class="season-dropdown-wrap"><label>Season</label><select class="season-select" id="seasonSelect" onchange="changeSeason(${id}, this.value)">${allSs.filter(s=>s).map((s,i)=>`<option value="${s.season_number}" ${i===0?'selected':''}>Season ${s.season_number}</option>`).join('')}</select></div><div class="ep-list" id="epL"><div class="empty"><i class="fas fa-spinner fa-spin" style="color:var(--accent)"></i></div></div></div>`;
           setTimeout(() => { const sel = $('#seasonSelect'); if (sel) loadEpInline(id, sel.value); }, 150);
         } else if (mt === 'tv' && ss > 0) {
-          html += `<div class="seasons-section"><h3 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.4rem"><i class="fas fa-list" style="color:var(--accent)"></i> Episodes</h3>
-          <div class="season-dropdown-wrap"><label>Season</label><select class="season-select" id="seasonSelect" onchange="changeSeason(${id}, this.value)">${Array.from({length:Math.min(ss,50)},(_,i)=>i+1).map(s=>`<option value="${s}" ${s===1?'selected':''}>Season ${s}</option>`).join('')}</select></div>
-          <div class="ep-list" id="epL"><div class="empty"><i class="fas fa-spinner fa-spin" style="color:var(--accent)"></i></div></div></div>`;
+          html += `<div class="seasons-section"><h3 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.4rem"><i class="fas fa-list" style="color:var(--accent)"></i> Episodes</h3><div class="season-dropdown-wrap"><label>Season</label><select class="season-select" id="seasonSelect" onchange="changeSeason(${id}, this.value)">${Array.from({length:Math.min(ss,50)},(_,i)=>i+1).map(s=>`<option value="${s}" ${s===1?'selected':''}>Season ${s}</option>`).join('')}</select></div><div class="ep-list" id="epL"><div class="empty"><i class="fas fa-spinner fa-spin" style="color:var(--accent)"></i></div></div></div>`;
           setTimeout(() => loadEpInline(id, 1), 150);
         }
-
         html += `</div>`;
         dp.innerHTML = html;
       } catch(e) { toast(e.message, true); dp.innerHTML = `<div class="empty" style="margin-top:2rem"><span class="empty-icon">⚠️</span><p class="empty-title">Error</p><p class="empty-desc">${e.message}</p><button class="btn btn-accent btn-sm" onclick="closeD()">Back</button></div>`; }
     };
 
-    window.changeSeason = (tid, sn) => {
-      S.currentSeason = parseInt(sn);
-      S.currentEpisode = 1; // Reset to first episode when changing season
-      loadEpInline(tid, sn);
-    };
+    window.changeSeason = (tid, sn) => { S.currentSeason = parseInt(sn); S.currentEpisode = 1; loadEpInline(tid, sn); };
 
     const showEp = (sd) => {
       const el = $('#epL'); if (!el || !S.det) return;
-      const tid = S.det.id;
-      const sn = sd.season_number;
+      const tid = S.det.id; const sn = sd.season_number;
       el.innerHTML = sd.episodes?.length ? sd.episodes.map(ep => {
         const still = ep.still_path ? `${IMG}/w300${ep.still_path}` : null;
         return `<div class="ep-card" onclick="window.S.currentEpisode=${ep.episode_number};window.S.currentSeason=${sn};window.showEmbedPlayer(${tid},'tv',${sn},${ep.episode_number});window.rebuildServerButtons(${tid},'tv',${sn},${ep.episode_number});"><div class="ep-still">${still?`<img src="${still}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='<div class=ep-still-placeholder>🎬</div>'">`:'<div class="ep-still-placeholder">🎬</div>'}<div class="ep-play-overlay"><i class="fas fa-play"></i></div></div><div class="ep-info"><div class="ep-num-name"><div class="ep-num">${ep.episode_number}</div><div class="ep-name">${ep.name}</div></div><div class="ep-meta">${ep.runtime?ep.runtime+'m ':''}${ep.air_date||''}</div>${ep.overview?`<div class="ep-overview">${ep.overview}</div>`:''}</div></div>`;
       }).join('') : '<div class="empty"><p>No episodes found</p></div>';
     };
 
-    // Rebuild server buttons with correct season/episode
-    window.rebuildServerButtons = (id, mt, sn, ep) => {
-      const serverSection = document.querySelector('.server-section');
-      if (serverSection) {
-        serverSection.outerHTML = buildServerButtons(id, mt, sn, ep);
-      }
-    };
-
-    const loadEpInline = async (tid, sn) => {
-      const el = $('#epL'); if (!el) return;
-      el.innerHTML = '<div class="empty"><i class="fas fa-spinner fa-spin" style="color:var(--accent)"></i></div>';
-      try { const d = await api(`/tv/${tid}/season/${sn}`); showEp(d); } catch(e) { toast(e.message, true); }
-    };
-
+    window.rebuildServerButtons = (id, mt, sn, ep) => { const ss = document.querySelector('.server-section'); if (ss) ss.outerHTML = buildServerButtons(id, mt, sn, ep); };
+    const loadEpInline = async (tid, sn) => { const el = $('#epL'); if (!el) return; el.innerHTML = '<div class="empty"><i class="fas fa-spinner fa-spin" style="color:var(--accent)"></i></div>'; try { const d = await api(`/tv/${tid}/season/${sn}`); showEp(d); } catch(e) { toast(e.message, true); } };
     window.loadEp = loadEpInline;
 
-    window.closeD = () => {
-      S.det = null;
-      window.history.pushState({ r:'home', f:S.f }, '', S.f==='all'?'/':`#/${S.f}`);
-      $('#homePage').classList.remove('off'); $('#detailPage').classList.remove('on'); $('#detailPage').innerHTML = '';
-      requestAnimationFrame(() => { window.scrollTo({ top: S.scrollPos, behavior: 'instant' }); });
-    };
-
-    window.playM = (id, mt, t, s = 1, ep = 1) => {
-      const url = getEmbedUrl(0, id, mt, s, ep);
-      const loadingEl = $('#playerLoading'), frame = $('#playerFrame');
-      if (loadingEl) loadingEl.classList.remove('hidden');
-      frame.src = url; $('#playerTitle').textContent = t;
-      $('#playerOverlay').classList.add('on'); document.body.style.overflow = 'hidden';
-      frame.onload = () => { if (loadingEl) loadingEl.classList.add('hidden'); };
-      setTimeout(() => { if (loadingEl) loadingEl.classList.add('hidden'); }, 4000);
-    };
-
+    window.closeD = () => { S.det = null; window.history.pushState({ r:'home', f:S.f }, '', S.f==='all'?'/':`#/${S.f}`); $('#homePage').classList.remove('off'); $('#detailPage').classList.remove('on'); $('#detailPage').innerHTML = ''; requestAnimationFrame(() => { window.scrollTo({ top: S.scrollPos, behavior: 'instant' }); }); };
+    window.playM = (id, mt, t, s = 1, ep = 1) => { const url = getEmbedUrl(0, id, mt, s, ep); const loadingEl = $('#playerLoading'), frame = $('#playerFrame'); if (loadingEl) loadingEl.classList.remove('hidden'); frame.src = url; $('#playerTitle').textContent = t; $('#playerOverlay').classList.add('on'); document.body.style.overflow = 'hidden'; frame.onload = () => { if (loadingEl) loadingEl.classList.add('hidden'); }; setTimeout(() => { if (loadingEl) loadingEl.classList.add('hidden'); }, 4000); };
     window.closePlayer = () => { $('#playerOverlay').classList.remove('on'); $('#playerFrame').src = ''; $('#playerLoading').classList.remove('hidden'); document.body.style.overflow = ''; };
-
     window.favClk = (btn, id, mt, t, poster) => { const added = favT({ id, mt, title:t, name:t, poster_path:poster }); if (btn) { btn.classList.toggle('on', added); if (btn.id === 'dFavBtn') btn.innerHTML = `<i class="fas fa-heart"></i> ${added?'Saved':'Save'}`; } toast(added ? 'Added!' : 'Removed'); };
 
     const upPills = (route, filter) => { $$('.bottom-nav-item').forEach(p => p.classList.remove('on')); const bp = $(`.bottom-nav-item[data-r="${route}"][data-f="${filter}"]`); if (bp) bp.classList.add('on'); };
@@ -633,9 +736,7 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') { window.closePlayer(); } });
     window.addEventListener('popstate', e => { if (e.state?.r === 'det') { S.scrollPos = window.scrollY; window.openD(e.state.id, e.state.mt); } else { const f = (e.state?.f) || 'all'; const route = f === 'fav' ? 'fav' : 'home'; S.det = null; $('#homePage').classList.remove('off'); $('#detailPage').classList.remove('on'); $('#detailPage').innerHTML = ''; loadInit(route, f); requestAnimationFrame(() => { window.scrollTo({ top: S.scrollPos, behavior: 'instant' }); }); } });
 
-    // Expose S for inline onclick handlers
     window.S = S;
-
     upBadges();
     if (window.location.hash) { const h = window.location.hash; if (h.startsWith('#/movie/') || h.startsWith('#/tv/')) { const [,mt,id] = h.split('/'); window.openD(parseInt(id), mt); } else { const f = h==='#/fav'?'fav':h==='#/movies'?'movie':h==='#/tv'?'tv':'all'; loadInit(f==='fav'?'fav':'home', f); } }
     else { window.history.replaceState({ r:'home', f:'all' }, '', '/'); loadInit('home', 'all'); }
