@@ -340,7 +340,6 @@
     // ========== CONFIGURATION ==========
     const CONFIG = {
       TMDB_API_KEY: '77c1a81838fea47869506ff798f95404',
-      // 6 Server options for embeds
       SERVERS: {
         movie: [
             { name: 'Server 1', url: 'https://vidfast.vc/movie/{id}?autoPlay=true' },
@@ -418,7 +417,7 @@
       </div>`;
     };
 
-    // Switch server
+    // Switch server - FIXED: uses the current season/episode from state
     window.switchServer = (serverIdx, id, mt, sn, ep) => {
       S.activeServer = serverIdx;
       S.currentMediaId = id;
@@ -426,7 +425,7 @@
       S.currentSeason = sn || 1;
       S.currentEpisode = ep || 1;
       
-      const url = getEmbedUrl(serverIdx, id, mt, sn, ep);
+      const url = getEmbedUrl(serverIdx, id, mt, S.currentSeason, S.currentEpisode);
       const frame = $('#detailPlayerFrame');
       const loading = $('#detailPlayerLoading');
       const wrap = $('#detailPlayerWrap');
@@ -450,7 +449,7 @@
       S.currentSeason = sn || 1;
       S.currentEpisode = ep || 1;
       
-      const url = getEmbedUrl(S.activeServer, id, mt, sn, ep);
+      const url = getEmbedUrl(S.activeServer, id, mt, S.currentSeason, S.currentEpisode);
       const wrap = $('#detailPlayerWrap');
       const frame = $('#detailPlayerFrame');
       const loading = $('#detailPlayerLoading');
@@ -569,15 +568,26 @@
 
     window.changeSeason = (tid, sn) => {
       S.currentSeason = parseInt(sn);
+      S.currentEpisode = 1; // Reset to first episode when changing season
       loadEpInline(tid, sn);
     };
 
     const showEp = (sd) => {
       const el = $('#epL'); if (!el || !S.det) return;
+      const tid = S.det.id;
+      const sn = sd.season_number;
       el.innerHTML = sd.episodes?.length ? sd.episodes.map(ep => {
         const still = ep.still_path ? `${IMG}/w300${ep.still_path}` : null;
-        return `<div class="ep-card" onclick="window.showEmbedPlayer(${S.det.id},'tv',${sd.season_number},${ep.episode_number});window.switchServer(${S.activeServer},${S.det.id},'tv',${sd.season_number},${ep.episode_number});"><div class="ep-still">${still?`<img src="${still}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='<div class=ep-still-placeholder>🎬</div>'">`:'<div class="ep-still-placeholder">🎬</div>'}<div class="ep-play-overlay"><i class="fas fa-play"></i></div></div><div class="ep-info"><div class="ep-num-name"><div class="ep-num">${ep.episode_number}</div><div class="ep-name">${ep.name}</div></div><div class="ep-meta">${ep.runtime?ep.runtime+'m ':''}${ep.air_date||''}</div>${ep.overview?`<div class="ep-overview">${ep.overview}</div>`:''}</div></div>`;
+        return `<div class="ep-card" onclick="window.S.currentEpisode=${ep.episode_number};window.S.currentSeason=${sn};window.showEmbedPlayer(${tid},'tv',${sn},${ep.episode_number});window.rebuildServerButtons(${tid},'tv',${sn},${ep.episode_number});"><div class="ep-still">${still?`<img src="${still}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='<div class=ep-still-placeholder>🎬</div>'">`:'<div class="ep-still-placeholder">🎬</div>'}<div class="ep-play-overlay"><i class="fas fa-play"></i></div></div><div class="ep-info"><div class="ep-num-name"><div class="ep-num">${ep.episode_number}</div><div class="ep-name">${ep.name}</div></div><div class="ep-meta">${ep.runtime?ep.runtime+'m ':''}${ep.air_date||''}</div>${ep.overview?`<div class="ep-overview">${ep.overview}</div>`:''}</div></div>`;
       }).join('') : '<div class="empty"><p>No episodes found</p></div>';
+    };
+
+    // Rebuild server buttons with correct season/episode
+    window.rebuildServerButtons = (id, mt, sn, ep) => {
+      const serverSection = document.querySelector('.server-section');
+      if (serverSection) {
+        serverSection.outerHTML = buildServerButtons(id, mt, sn, ep);
+      }
     };
 
     const loadEpInline = async (tid, sn) => {
@@ -622,6 +632,9 @@
     document.addEventListener('click', e => { if (!e.target.closest('.bottom-search-wrap')) $('#searchDrop').classList.remove('on'); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') { window.closePlayer(); } });
     window.addEventListener('popstate', e => { if (e.state?.r === 'det') { S.scrollPos = window.scrollY; window.openD(e.state.id, e.state.mt); } else { const f = (e.state?.f) || 'all'; const route = f === 'fav' ? 'fav' : 'home'; S.det = null; $('#homePage').classList.remove('off'); $('#detailPage').classList.remove('on'); $('#detailPage').innerHTML = ''; loadInit(route, f); requestAnimationFrame(() => { window.scrollTo({ top: S.scrollPos, behavior: 'instant' }); }); } });
+
+    // Expose S for inline onclick handlers
+    window.S = S;
 
     upBadges();
     if (window.location.hash) { const h = window.location.hash; if (h.startsWith('#/movie/') || h.startsWith('#/tv/')) { const [,mt,id] = h.split('/'); window.openD(parseInt(id), mt); } else { const f = h==='#/fav'?'fav':h==='#/movies'?'movie':h==='#/tv'?'tv':'all'; loadInit(f==='fav'?'fav':'home', f); } }
