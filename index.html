@@ -114,6 +114,22 @@
     .btn-ghost { background: var(--bg4); color: var(--text); border: 1px solid var(--border2); }
     .btn-sm { padding: 0.4rem 0.9rem; font-size: 0.75rem; }
 
+    /* Server buttons */
+    .server-section { margin-bottom: 1rem; }
+    .server-section-label { font-size: 0.72rem; font-weight: 600; color: var(--text3); margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.35rem; }
+    .server-section-label i { font-size: 0.65rem; }
+    .server-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.35rem; }
+    .server-btn {
+      background: var(--bg3); border: 1px solid var(--border2); color: var(--text2);
+      padding: 0.4rem 0.3rem; border-radius: 8px; cursor: pointer;
+      font-weight: 600; font-size: 0.68rem; transition: all 0.15s;
+      font-family: inherit; text-align: center;
+      display: flex; align-items: center; justify-content: center; gap: 0.25rem;
+    }
+    .server-btn:active { transform: scale(0.95); }
+    .server-btn.on { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 700; box-shadow: 0 2px 10px rgba(245,158,11,0.25); }
+    .server-btn i { font-size: 0.55rem; }
+
     .detail-page { display: none; }
     .detail-page.on { display: block; animation: fadeUp 0.3s ease; }
     .home-page.off { display: none; }
@@ -146,33 +162,21 @@
     .detail-genres { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
     .genre-tag { background: rgba(255,255,255,0.04); border: 1px solid var(--border); padding: 0.25rem 0.6rem; border-radius: 50px; font-size: 0.68rem; color: var(--text2); font-weight: 500; }
     .detail-overview { color: var(--text2); font-size: 0.82rem; line-height: 1.6; margin-bottom: 1rem; }
-    .detail-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .detail-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
 
-    /* Embed player inside detail page - hidden by default */
+    /* Embed player */
     .detail-player-wrap {
       display: none;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
       background: #000;
       border-radius: var(--radius);
       overflow: hidden;
       border: 1px solid var(--border2);
     }
     .detail-player-wrap.on { display: block; }
-    .detail-player-wrap .player-frame-wrap {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16/9;
-      background: #000;
-    }
-    .detail-player-wrap .player-frame-wrap iframe {
-      width: 100%; height: 100%; border: none;
-    }
-    .detail-player-loading {
-      position: absolute; inset: 0; display: flex;
-      flex-direction: column; align-items: center; justify-content: center;
-      background: #000; z-index: 2; pointer-events: none;
-      transition: opacity 0.4s ease;
-    }
+    .detail-player-wrap .player-frame-wrap { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; }
+    .detail-player-wrap .player-frame-wrap iframe { width: 100%; height: 100%; border: none; }
+    .detail-player-loading { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #000; z-index: 2; pointer-events: none; transition: opacity 0.4s ease; }
     .detail-player-loading.hidden { opacity: 0; }
     .detail-player-loading i { font-size: 1.5rem; color: var(--accent); animation: spin 1s linear infinite; margin-bottom: 0.4rem; }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -191,7 +195,6 @@
     .season-select:focus { border-color: var(--accent); }
 
     .ep-list { display: grid; gap: 0.5rem; }
-
     .ep-card {
       background: var(--bg3); border: 1px solid var(--border);
       border-radius: var(--radius); overflow: hidden; cursor: pointer;
@@ -334,19 +337,39 @@
   </div>
 
   <script>
+    // ========== CONFIGURATION ==========
     const CONFIG = {
       TMDB_API_KEY: '77c1a81838fea47869506ff798f95404',
-      MOVIE_EMBED_URL: 'https://vidsrc.wiki/embed/movie/{id}',
-      TV_EMBED_URL: 'https://vidsrc.sbs/embed/tv/{id}/{season}/{episode}'
+      // 6 Server options for embeds
+      SERVERS: {
+        movie: [
+            { name: 'Server 1', url: 'https://vidfast.vc/movie/{id}?autoPlay=true' },
+            { name: 'Server 2', url: 'https://player.videasy.net/movie/{id}?color=b300ff' },
+            { name: 'Server 3', url: 'https://vidsrc.wiki/embed/movie/{id}' },
+            { name: 'Server 4', url: 'https://vidsrc.sbs/embed/movie/{id}' },
+            { name: 'Server 5', url: 'https://vidrock.ru/embed/movie/{id}' },
+            { name: 'Server 6', url: 'https://zxcstream.xyz/player/movie/{id}' }
+        ],
+        tv: [
+            { name: 'Server 1', url: 'https://vidfast.vc/tv/{id}/{season}/{episode}?autoPlay=true' },
+            { name: 'Server 2', url: 'https://vidsrc.wiki/embed/tv/{id}/{season}/{episode}' },
+            { name: 'Server 3', url: 'https://vidsrc.sbs/embed/tv/{id}/{season}/{episode}' },
+            { name: 'Server 4', url: 'https://vaplayer.ru/embed/tv/{id}/{season}/{episode}' },
+            { name: 'Server 5', url: 'https://vidrock.ru/embed/tv/{id}/{season}/{episode}' },
+            { name: 'Server 6', url: 'https://zxcstream.xyz/player/tv/{id}/{season}/{episode}' }
+        ]
+      }
     };
+    // ==================================
 
     const TMDB = 'https://api.themoviedb.org/3';
     const IMG = 'https://image.tmdb.org/t/p';
 
     const S = {
-      key: CONFIG.TMDB_API_KEY, mu: CONFIG.MOVIE_EMBED_URL, tu: CONFIG.TV_EMBED_URL,
+      key: CONFIG.TMDB_API_KEY,
       fav: JSON.parse(localStorage.getItem('ss_f') || '[]'),
-      f: 'all', p: 1, load: false, more: true, q: '', t: null, obs: null, det: null, scrollPos: 0
+      f: 'all', p: 1, load: false, more: true, q: '', t: null, obs: null, det: null, scrollPos: 0,
+      activeServer: 0, currentMediaId: null, currentMediaType: null, currentSeason: 1, currentEpisode: 1
     };
 
     const $ = s => document.querySelector(s);
@@ -372,6 +395,78 @@
     const favT = (it) => { const ix = S.fav.findIndex(f => f.id === it.id && f.mt === it.mt); if (ix >= 0) S.fav.splice(ix, 1); else S.fav.unshift({ id:it.id, mt:it.mt, title:it.title||it.name, poster:it.poster_path, date:Date.now() }); localStorage.setItem('ss_f', JSON.stringify(S.fav)); upBadges(); return ix < 0; };
     const isFav = (id, mt) => S.fav.some(f => f.id === id && f.mt === mt);
     const upBadges = () => { const c = S.fav.length; const m = $('#favBadgeMob'); if (m) { m.textContent = c; if (c > 0) m.classList.add('on'); else m.classList.remove('on'); } };
+
+    // Get embed URL based on server index
+    const getEmbedUrl = (serverIdx, id, mt, sn, ep) => {
+      const servers = mt === 'movie' ? CONFIG.SERVERS.movie : CONFIG.SERVERS.tv;
+      const server = servers[serverIdx] || servers[0];
+      let url = server.url.replace('{id}', id);
+      if (mt === 'tv') {
+        url = url.replace('{season}', sn || 1).replace('{episode}', ep || 1);
+      }
+      return url;
+    };
+
+    // Build server buttons HTML
+    const buildServerButtons = (id, mt, sn, ep) => {
+      const servers = mt === 'movie' ? CONFIG.SERVERS.movie : CONFIG.SERVERS.tv;
+      return `<div class="server-section">
+        <div class="server-section-label"><i class="fas fa-server"></i> Switch Server</div>
+        <div class="server-list">
+          ${servers.map((s, i) => `<button class="server-btn ${i === S.activeServer ? 'on' : ''}" onclick="switchServer(${i}, ${id}, '${mt}', ${sn||1}, ${ep||1})"><i class="fas fa-play-circle"></i> ${s.name}</button>`).join('')}
+        </div>
+      </div>`;
+    };
+
+    // Switch server
+    window.switchServer = (serverIdx, id, mt, sn, ep) => {
+      S.activeServer = serverIdx;
+      S.currentMediaId = id;
+      S.currentMediaType = mt;
+      S.currentSeason = sn || 1;
+      S.currentEpisode = ep || 1;
+      
+      const url = getEmbedUrl(serverIdx, id, mt, sn, ep);
+      const frame = $('#detailPlayerFrame');
+      const loading = $('#detailPlayerLoading');
+      const wrap = $('#detailPlayerWrap');
+      
+      if (wrap) wrap.classList.add('on');
+      if (frame) {
+        if (loading) loading.classList.remove('hidden');
+        frame.src = url;
+        frame.onload = () => { if (loading) loading.classList.add('hidden'); };
+        setTimeout(() => { if (loading) loading.classList.add('hidden'); }, 5000);
+      }
+      
+      // Update active button
+      $$('.server-btn').forEach((b, i) => b.classList.toggle('on', i === serverIdx));
+    };
+
+    // Show embed player
+    window.showEmbedPlayer = (id, mt, sn, ep) => {
+      S.currentMediaId = id;
+      S.currentMediaType = mt;
+      S.currentSeason = sn || 1;
+      S.currentEpisode = ep || 1;
+      
+      const url = getEmbedUrl(S.activeServer, id, mt, sn, ep);
+      const wrap = $('#detailPlayerWrap');
+      const frame = $('#detailPlayerFrame');
+      const loading = $('#detailPlayerLoading');
+      
+      if (wrap && frame) {
+        wrap.classList.add('on');
+        if (loading) loading.classList.remove('hidden');
+        frame.src = url;
+        frame.onload = () => { if (loading) loading.classList.add('hidden'); };
+        setTimeout(() => { if (loading) loading.classList.add('hidden'); }, 5000);
+        wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      
+      // Update server buttons active state
+      $$('.server-btn').forEach((b, i) => b.classList.toggle('on', i === S.activeServer));
+    };
 
     const cardH = (it) => {
       const t = it.title || it.name || '?'; const y = (it.release_date || it.first_air_date || '').slice(0,4);
@@ -418,37 +513,9 @@
       try { const d = await srch(q, 1); S.more = d.page < d.max; render(d.items); setupScroll(); } catch(e) { toast(e.message, true); }
     };
 
-    // Build embed player HTML (hidden by default)
-    const buildEmbedPlayer = (id, mt, sn, ep) => {
-      const url = mt === 'movie' ? S.mu.replace('{id}', id) : S.tu.replace('{id}', id).replace('{season}', sn||1).replace('{episode}', ep||1);
-      return `<div class="detail-player-wrap" id="detailPlayerWrap">
-        <div class="player-frame-wrap">
-          <div class="detail-player-loading" id="detailPlayerLoading"><i class="fas fa-spinner"></i><span>Loading player...</span></div>
-          <iframe id="detailPlayerFrame" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-        </div>
-      </div>`;
-    };
-
-    // Show and load the embed player
-    window.showEmbedPlayer = (id, mt, sn, ep) => {
-      const wrap = $('#detailPlayerWrap');
-      const frame = $('#detailPlayerFrame');
-      const loading = $('#detailPlayerLoading');
-      const url = mt === 'movie' ? S.mu.replace('{id}', id) : S.tu.replace('{id}', id).replace('{season}', sn||1).replace('{episode}', ep||1);
-      
-      if (wrap && frame) {
-        wrap.classList.add('on');
-        if (loading) loading.classList.remove('hidden');
-        frame.src = url;
-        frame.onload = () => { if (loading) loading.classList.add('hidden'); };
-        setTimeout(() => { if (loading) loading.classList.add('hidden'); }, 5000);
-        // Scroll to player
-        wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    };
-
     window.openD = async (id, mt) => {
       S.scrollPos = window.scrollY; S.det = { id, mt };
+      S.activeServer = 0; S.currentMediaId = id; S.currentMediaType = mt; S.currentSeason = 1; S.currentEpisode = 1;
       window.history.pushState({ r:'det', id, mt }, '', `#/${mt}/${id}`);
       window.scrollTo({ top:0, behavior:'instant' });
       $('#homePage').classList.add('off');
@@ -475,7 +542,13 @@
             <button class="btn btn-accent" onclick="window.showEmbedPlayer(${id},'${mt}',1,1)"><i class="fas fa-play"></i> ${mt==='movie'?'Watch Now':'Play S01E01'}</button>
             <button class="btn btn-ghost btn-sm" id="dFavBtn" onclick="favClk(this,${id},'${mt}','${t.replace(/'/g,"\\'")}','${poster}')"><i class="fas fa-heart"></i> ${fv?'Saved':'Save'}</button>
           </div>
-          ${buildEmbedPlayer(id, mt, 1, 1)}`;
+          ${buildServerButtons(id, mt, 1, 1)}
+          <div class="detail-player-wrap" id="detailPlayerWrap">
+            <div class="player-frame-wrap">
+              <div class="detail-player-loading" id="detailPlayerLoading"><i class="fas fa-spinner"></i><span>Loading player...</span></div>
+              <iframe id="detailPlayerFrame" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+            </div>
+          </div>`;
 
         if (mt === 'tv' && allSs.length > 0) {
           html += `<div class="seasons-section"><h3 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.4rem"><i class="fas fa-list" style="color:var(--accent)"></i> Episodes</h3>
@@ -494,8 +567,8 @@
       } catch(e) { toast(e.message, true); dp.innerHTML = `<div class="empty" style="margin-top:2rem"><span class="empty-icon">⚠️</span><p class="empty-title">Error</p><p class="empty-desc">${e.message}</p><button class="btn btn-accent btn-sm" onclick="closeD()">Back</button></div>`; }
     };
 
-    // Change season and load episodes
     window.changeSeason = (tid, sn) => {
+      S.currentSeason = parseInt(sn);
       loadEpInline(tid, sn);
     };
 
@@ -503,7 +576,7 @@
       const el = $('#epL'); if (!el || !S.det) return;
       el.innerHTML = sd.episodes?.length ? sd.episodes.map(ep => {
         const still = ep.still_path ? `${IMG}/w300${ep.still_path}` : null;
-        return `<div class="ep-card" onclick="window.showEmbedPlayer(${S.det.id},'tv',${sd.season_number},${ep.episode_number})"><div class="ep-still">${still?`<img src="${still}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='<div class=ep-still-placeholder>🎬</div>'">`:'<div class="ep-still-placeholder">🎬</div>'}<div class="ep-play-overlay"><i class="fas fa-play"></i></div></div><div class="ep-info"><div class="ep-num-name"><div class="ep-num">${ep.episode_number}</div><div class="ep-name">${ep.name}</div></div><div class="ep-meta">${ep.runtime?ep.runtime+'m ':''}${ep.air_date||''}</div>${ep.overview?`<div class="ep-overview">${ep.overview}</div>`:''}</div></div>`;
+        return `<div class="ep-card" onclick="window.showEmbedPlayer(${S.det.id},'tv',${sd.season_number},${ep.episode_number});window.switchServer(${S.activeServer},${S.det.id},'tv',${sd.season_number},${ep.episode_number});"><div class="ep-still">${still?`<img src="${still}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='<div class=ep-still-placeholder>🎬</div>'">`:'<div class="ep-still-placeholder">🎬</div>'}<div class="ep-play-overlay"><i class="fas fa-play"></i></div></div><div class="ep-info"><div class="ep-num-name"><div class="ep-num">${ep.episode_number}</div><div class="ep-name">${ep.name}</div></div><div class="ep-meta">${ep.runtime?ep.runtime+'m ':''}${ep.air_date||''}</div>${ep.overview?`<div class="ep-overview">${ep.overview}</div>`:''}</div></div>`;
       }).join('') : '<div class="empty"><p>No episodes found</p></div>';
     };
 
@@ -523,7 +596,7 @@
     };
 
     window.playM = (id, mt, t, s = 1, ep = 1) => {
-      const url = mt === 'movie' ? S.mu.replace('{id}', id) : S.tu.replace('{id}', id).replace('{season}', s).replace('{episode}', ep);
+      const url = getEmbedUrl(0, id, mt, s, ep);
       const loadingEl = $('#playerLoading'), frame = $('#playerFrame');
       if (loadingEl) loadingEl.classList.remove('hidden');
       frame.src = url; $('#playerTitle').textContent = t;
