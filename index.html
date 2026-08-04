@@ -554,7 +554,7 @@
           <div class="featured-hero-badge"><i class="fas fa-fire"></i> #1 Trending ${mt==='movie'?'Movie':'TV Show'}</div>
           <div class="featured-hero-title">${t}</div>
           <div class="featured-hero-meta"><span><i class="fas fa-star" style="color:var(--green2);font-size:0.55rem"></i> ${rating}</span><span>${year}</span></div>
-          <button class="featured-hero-play" onclick="event.stopPropagation();window.showEmbedPlayer(${item.id},'${mt}',1,1)"><i class="fas fa-play"></i> Watch Now</button>
+          <button class="featured-hero-play" onclick="event.stopPropagation(); openD(${item.id},'${mt}')"><i class="fas fa-play"></i> Watch Now</button>
         </div>
       </div>`;
     };
@@ -737,7 +737,6 @@
 
     window.changeSeason = (tid, sn) => { S.currentSeason = parseInt(sn); S.currentEpisode = 1; loadEpInline(tid, sn); };
 
-    // Add updateActiveEpisode helper
     window.updateActiveEpisode = () => {
       const allCards = $$('.ep-card');
       allCards.forEach(card => {
