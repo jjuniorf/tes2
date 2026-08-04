@@ -49,7 +49,7 @@
 
     ::-webkit-scrollbar { width:0; height:0; }
 
-    /* ─── Splash Loading Screen ─── */
+    /* Splash */
     .splash-screen {
       position: fixed;
       inset: 0;
@@ -62,24 +62,11 @@
       transition: opacity 0.4s ease, visibility 0.4s ease;
     }
 
-    .splash-screen.hide {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
+    .splash-screen.hide { opacity: 0; visibility: hidden; pointer-events: none; }
 
-    .splash-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-      animation: splashPulse 2s ease-in-out infinite;
-    }
+    .splash-logo { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; animation: splashPulse 2s ease-in-out infinite; }
 
-    @keyframes splashPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
+    @keyframes splashPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
     .splash-icon {
       width: 50px; height: 50px;
@@ -103,14 +90,10 @@
       background-clip: text;
     }
 
-    .splash-accent {
-      color: var(--accent);
-      -webkit-text-fill-color: var(--accent);
-    }
+    .splash-accent { color: var(--accent); -webkit-text-fill-color: var(--accent); }
 
     .splash-loader {
-      width: 120px;
-      height: 3px;
+      width: 120px; height: 3px;
       background: rgba(255,255,255,0.06);
       border-radius: 3px;
       overflow: hidden;
@@ -126,29 +109,13 @@
       width: 40%;
     }
 
-    @keyframes loaderSlide {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(350%); }
-    }
+    @keyframes loaderSlide { 0% { transform: translateX(-100%); } 100% { transform: translateX(350%); } }
 
-    .splash-tagline {
-      font-size: 0.75rem;
-      color: var(--text3);
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      animation: fadeText 2s ease-in-out infinite;
-    }
+    .splash-tagline { font-size: 0.75rem; color: var(--text3); font-weight: 500; letter-spacing: 0.02em; animation: fadeText 2s ease-in-out infinite; }
 
-    @keyframes fadeText {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
-    }
+    @keyframes fadeText { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
-    .splash-dots {
-      display: flex;
-      gap: 0.3rem;
-      margin-top: 0.75rem;
-    }
+    .splash-dots { display: flex; gap: 0.3rem; margin-top: 0.75rem; }
 
     .splash-dot {
       width: 5px; height: 5px;
@@ -161,12 +128,9 @@
     .splash-dot:nth-child(2) { animation-delay: 0.2s; }
     .splash-dot:nth-child(3) { animation-delay: 0.4s; }
 
-    @keyframes dotBounce {
-      0%, 80%, 100% { transform: scale(0.6); opacity: 0.3; }
-      40% { transform: scale(1.2); opacity: 1; background: var(--accent); }
-    }
+    @keyframes dotBounce { 0%, 80%, 100% { transform: scale(0.6); opacity: 0.3; } 40% { transform: scale(1.2); opacity: 1; background: var(--accent); } }
 
-    /* ─── Main ─── */
+    /* Main */
     .main { padding: 1rem 0.75rem 2rem; }
 
     .section-top {
@@ -189,12 +153,7 @@
     .section-icon { color: var(--accent); font-size: 1rem; }
     .section-count { font-size: 0.75rem; color: var(--text3); font-weight: 500; }
 
-    /* Grid */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.6rem;
-    }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
 
     .card {
       background: var(--bg3);
@@ -207,111 +166,59 @@
 
     .card:active { transform: scale(0.97); }
 
-    .card-poster {
-      position: relative;
-      aspect-ratio: 2/3;
-      background: var(--bg2);
-      overflow: hidden;
-    }
-
+    .card-poster { position: relative; aspect-ratio: 2/3; background: var(--bg2); overflow: hidden; }
     .card-poster img { width: 100%; height: 100%; object-fit: cover; }
 
     .card-badges {
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      right: 4px;
-      display: flex;
-      justify-content: space-between;
-      z-index: 2;
-      pointer-events: none;
+      position: absolute; top: 4px; left: 4px; right: 4px;
+      display: flex; justify-content: space-between; z-index: 2; pointer-events: none;
     }
 
     .card-type {
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(4px);
-      color: var(--accent2);
-      padding: 0.15rem 0.4rem;
-      border-radius: 50px;
-      font-size: 0.5rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
+      background: rgba(0,0,0,0.75); backdrop-filter: blur(4px);
+      color: var(--accent2); padding: 0.15rem 0.4rem; border-radius: 50px;
+      font-size: 0.5rem; font-weight: 700; letter-spacing: 0.03em;
     }
 
     .card-rating {
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(4px);
-      color: var(--green2);
-      padding: 0.15rem 0.4rem;
-      border-radius: 50px;
-      font-size: 0.55rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 0.15rem;
+      background: rgba(0,0,0,0.75); backdrop-filter: blur(4px);
+      color: var(--green2); padding: 0.15rem 0.4rem; border-radius: 50px;
+      font-size: 0.55rem; font-weight: 700; display: flex; align-items: center; gap: 0.15rem;
     }
 
     .card-info { padding: 0.55rem 0.6rem; }
 
     .card-title {
-      font-weight: 600;
-      font-size: 0.72rem;
-      line-height: 1.2;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      margin-bottom: 0.15rem;
+      font-weight: 600; font-size: 0.72rem; line-height: 1.2;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden; margin-bottom: 0.15rem;
     }
 
     .card-year { font-size: 0.65rem; color: var(--text3); }
 
     .card-fav-btn {
-      position: absolute;
-      bottom: 0.4rem;
-      right: 0.4rem;
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      background: rgba(0,0,0,0.6);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: white;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      z-index: 3;
+      position: absolute; bottom: 0.4rem; right: 0.4rem;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.2);
+      color: white; cursor: pointer; display: flex; align-items: center;
+      justify-content: center; font-size: 0.7rem; z-index: 3;
     }
 
     .card-fav-btn.on { background: #ef4444; border-color: #ef4444; }
 
-    /* Empty */
     .empty {
-      grid-column: 1/-1;
-      text-align: center;
-      padding: 3rem 1.5rem;
-      background: var(--bg3);
-      border-radius: var(--radius2);
-      border: 1px solid var(--border);
+      grid-column: 1/-1; text-align: center; padding: 3rem 1.5rem;
+      background: var(--bg3); border-radius: var(--radius2); border: 1px solid var(--border);
     }
 
     .empty-icon { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
     .empty-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
     .empty-desc { color: var(--text2); font-size: 0.82rem; }
 
-    /* Buttons */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      padding: 0.55rem 1.25rem;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 0.82rem;
-      cursor: pointer;
-      border: none;
-      font-family: inherit;
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 0.4rem; padding: 0.55rem 1.25rem; border-radius: 50px;
+      font-weight: 600; font-size: 0.82rem; cursor: pointer; border: none; font-family: inherit;
     }
 
     .btn:active { transform: scale(0.96); }
@@ -319,7 +226,6 @@
     .btn-ghost { background: var(--bg4); color: var(--text); border: 1px solid var(--border2); }
     .btn-sm { padding: 0.4rem 0.9rem; font-size: 0.75rem; }
 
-    /* Detail Page */
     .detail-page { display: none; }
     .detail-page.on { display: block; animation: fadeUp 0.3s ease; }
     .home-page.off { display: none; }
@@ -327,59 +233,35 @@
     @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
 
     .detail-close-btn {
-      position: absolute;
-      top: 0.75rem;
-      right: 0.75rem;
-      z-index: 10;
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: white;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
+      position: absolute; top: 0.75rem; right: 0.75rem; z-index: 10;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2); color: white;
+      cursor: pointer; display: flex; align-items: center;
+      justify-content: center; font-size: 0.9rem;
     }
 
     .detail-close-btn:active { background: rgba(239,68,68,0.5); border-color: #ef4444; }
 
     .detail-hero {
-      position: relative;
-      aspect-ratio: 16/11;
-      background-size: cover;
-      background-position: center 20%;
-      border-radius: var(--radius2);
-      overflow: hidden;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: flex-end;
+      position: relative; aspect-ratio: 16/11; background-size: cover;
+      background-position: center 20%; border-radius: var(--radius2);
+      overflow: hidden; margin-bottom: 1rem; display: flex; align-items: flex-end;
     }
 
     .detail-hero-overlay {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: linear-gradient(to top, var(--bg) 0%, rgba(3,5,10,0.7) 40%, rgba(3,5,10,0.2) 100%);
     }
 
     .detail-hero-info {
-      position: relative;
-      z-index: 2;
-      padding: 1rem;
-      width: 100%;
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-end;
+      position: relative; z-index: 2; padding: 1rem; width: 100%;
+      display: flex; gap: 0.75rem; align-items: flex-end;
     }
 
     .detail-hero-poster {
-      width: 100px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-      flex-shrink: 0;
+      width: 100px; border-radius: var(--radius); overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6); flex-shrink: 0;
       border: 1px solid rgba(255,255,255,0.1);
     }
 
@@ -387,15 +269,9 @@
     .detail-hero-text { flex: 1; min-width: 0; padding-bottom: 0.25rem; }
 
     .detail-hero-text h1 {
-      font-size: 1.3rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin-bottom: 0.25rem;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em;
+      line-height: 1.2; margin-bottom: 0.25rem;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
 
     .detail-hero-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; font-size: 0.7rem; color: var(--text2); }
@@ -405,38 +281,24 @@
     .detail-genres { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
 
     .genre-tag {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      padding: 0.25rem 0.6rem;
-      border-radius: 50px;
-      font-size: 0.68rem;
-      color: var(--text2);
-      font-weight: 500;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      padding: 0.25rem 0.6rem; border-radius: 50px; font-size: 0.68rem;
+      color: var(--text2); font-weight: 500;
     }
 
     .detail-overview { color: var(--text2); font-size: 0.82rem; line-height: 1.6; margin-bottom: 1rem; }
     .detail-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
 
-    /* Season Dropdown */
     .season-dropdown-wrap { margin-bottom: 1rem; }
     .season-dropdown-wrap label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text2); margin-bottom: 0.4rem; }
 
     .season-select {
-      width: 100%;
-      padding: 0.6rem 0.9rem;
-      border-radius: 10px;
-      border: 1px solid var(--border2);
-      background: var(--bg3);
-      color: var(--text);
-      font-size: 0.85rem;
-      font-family: inherit;
-      outline: none;
-      appearance: none;
-      -webkit-appearance: none;
+      width: 100%; padding: 0.6rem 0.9rem; border-radius: 10px;
+      border: 1px solid var(--border2); background: var(--bg3); color: var(--text);
+      font-size: 0.85rem; font-family: inherit; outline: none;
+      appearance: none; -webkit-appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 0.9rem center;
-      padding-right: 2.2rem;
+      background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.2rem;
     }
 
     .season-select:focus { border-color: var(--accent); }
@@ -444,210 +306,257 @@
     .ep-list { display: grid; gap: 0.5rem; }
 
     .ep-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      cursor: pointer;
-      display: flex;
-      gap: 0.6rem;
-      transition: background 0.15s;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; cursor: pointer;
+      display: flex; gap: 0.6rem; transition: background 0.15s;
     }
 
     .ep-card:active { background: var(--bg4); }
 
-    .ep-still {
-      width: 120px;
-      flex-shrink: 0;
-      aspect-ratio: 16/9;
-      background: var(--bg2);
-      position: relative;
-    }
-
+    .ep-still { width: 120px; flex-shrink: 0; aspect-ratio: 16/9; background: var(--bg2); position: relative; }
     .ep-still img { width: 100%; height: 100%; object-fit: cover; }
 
     .ep-still-placeholder {
-      width: 100%; height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      background: var(--bg2);
+      width: 100%; height: 100%; display: flex; align-items: center;
+      justify-content: center; font-size: 1.5rem; background: var(--bg2);
     }
 
     .ep-play-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.2s;
+      position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.2s;
     }
 
     .ep-card:active .ep-play-overlay { opacity: 1; }
 
     .ep-play-overlay i {
-      background: var(--accent);
-      color: var(--bg);
-      width: 30px; height: 30px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
+      background: var(--accent); color: var(--bg);
+      width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 0.7rem;
     }
 
     .ep-info {
-      flex: 1;
-      min-width: 0;
-      padding: 0.6rem 0.6rem 0.6rem 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      flex: 1; min-width: 0; padding: 0.6rem 0.6rem 0.6rem 0;
+      display: flex; flex-direction: column; justify-content: center;
     }
 
     .ep-num-name { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.2rem; }
 
     .ep-num {
-      background: var(--accent);
-      color: var(--bg);
-      min-width: 24px; height: 24px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.65rem;
-      flex-shrink: 0;
+      background: var(--accent); color: var(--bg);
+      min-width: 24px; height: 24px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.65rem; flex-shrink: 0;
     }
 
     .ep-name { font-weight: 600; font-size: 0.78rem; line-height: 1.2; }
     .ep-meta { font-size: 0.65rem; color: var(--text3); margin-top: 2px; }
     .ep-overview { font-size: 0.65rem; color: var(--text3); margin-top: 3px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-    /* Player */
+    /* ─── Optimized Player Modal ─── */
     .player-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: #000;
+      background: rgba(0,0,0,0.92);
       z-index: 1000;
-      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      backdrop-filter: blur(8px);
     }
 
-    .player-overlay.on { display: flex; }
-    .player-top { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0.75rem; background: var(--bg3); flex-shrink: 0; }
-    .player-top-title { font-weight: 600; font-size: 0.82rem; flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .player-overlay.on { display: flex; animation: playerFadeIn 0.25s ease; }
 
-    .player-close {
-      background: rgba(255,255,255,0.08);
-      border: none;
-      color: var(--text2);
+    @keyframes playerFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .player-dialog {
+      width: 100%;
+      max-width: 420px;
+      background: var(--bg3);
+      border-radius: var(--radius2);
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+      border: 1px solid var(--border2);
+      animation: playerScaleIn 0.3s ease;
+    }
+
+    @keyframes playerScaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+    .player-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .player-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .player-header-icon {
+      width: 28px; height: 28px;
+      background: var(--accent);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: var(--bg);
+      flex-shrink: 0;
+    }
+
+    .player-header-title {
+      font-weight: 600;
+      font-size: 0.82rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text);
+    }
+
+    .player-close-btn {
       width: 30px; height: 30px;
+      background: rgba(255,255,255,0.06);
+      border: none;
       border-radius: 50%;
+      color: var(--text2);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       flex-shrink: 0;
-      margin-left: 0.5rem;
+      margin-left: 0.75rem;
+      transition: all 0.15s;
     }
 
-    .player-frame { flex: 1; width: 100%; border: none; }
+    .player-close-btn:active { background: rgba(239,68,68,0.4); color: #ef4444; }
+
+    .player-frame-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+    }
+
+    .player-frame-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .player-frame-loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      z-index: 2;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .player-frame-loading.hidden { opacity: 0; }
+
+    .player-frame-loading i {
+      font-size: 1.8rem;
+      color: var(--accent);
+      animation: spin 1s linear infinite;
+      margin-bottom: 0.5rem;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .player-frame-loading span {
+      font-size: 0.7rem;
+      color: var(--text3);
+      font-weight: 500;
+    }
+
+    .player-footer {
+      padding: 0.6rem 1rem;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .player-footer-text {
+      font-size: 0.7rem;
+      color: var(--text3);
+      flex: 1;
+      text-align: center;
+    }
+
+    .player-footer-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
 
     /* Bottom Bar */
     .bottom-bar {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 480px;
-      background: rgba(10,15,26,0.95);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-top: 1px solid var(--border);
-      z-index: 99;
-      padding: 0.5rem 0.75rem;
-      padding-bottom: calc(0.5rem + var(--safe-b));
+      position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 100%; max-width: 480px;
+      background: rgba(10,15,26,0.95); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px); border-top: 1px solid var(--border);
+      z-index: 99; padding: 0.5rem 0.75rem; padding-bottom: calc(0.5rem + var(--safe-b));
     }
 
     .bottom-search-wrap { position: relative; margin-bottom: 0.5rem; }
 
     .bottom-search-box {
-      display: flex;
-      align-items: center;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border2);
-      border-radius: 50px;
-      padding: 0.5rem 0.75rem;
-      gap: 0.5rem;
-      transition: all 0.2s;
+      display: flex; align-items: center; background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border2); border-radius: 50px;
+      padding: 0.5rem 0.75rem; gap: 0.5rem; transition: all 0.2s;
     }
 
     .bottom-search-box:focus-within {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(245,158,11,0.1);
+      border-color: var(--accent); box-shadow: 0 0 0 3px rgba(245,158,11,0.1);
       background: rgba(255,255,255,0.06);
     }
 
     .bottom-search-icon { color: var(--text3); font-size: 0.8rem; flex-shrink: 0; }
 
     .bottom-search-input {
-      flex: 1;
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 0.85rem;
-      outline: none;
-      font-family: inherit;
-      min-width: 0;
+      flex: 1; background: none; border: none; color: var(--text);
+      font-size: 0.85rem; outline: none; font-family: inherit; min-width: 0;
     }
 
     .bottom-search-input::placeholder { color: var(--text3); }
 
     .bottom-search-clear {
-      width: 24px; height: 24px;
-      background: rgba(255,255,255,0.06);
-      border: none;
-      border-radius: 50%;
-      color: var(--text3);
-      cursor: pointer;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.55rem;
-      flex-shrink: 0;
+      width: 24px; height: 24px; background: rgba(255,255,255,0.06);
+      border: none; border-radius: 50%; color: var(--text3); cursor: pointer;
+      display: none; align-items: center; justify-content: center;
+      font-size: 0.55rem; flex-shrink: 0;
     }
 
     .bottom-search-clear.on { display: flex; }
 
     .bottom-search-drop {
-      position: absolute;
-      bottom: calc(100% + 6px);
-      left: 0; right: 0;
-      background: var(--bg3);
-      border: 1px solid var(--border2);
-      border-radius: var(--radius2);
-      max-height: 45vh;
-      overflow-y: auto;
-      display: none;
-      z-index: 200;
-      box-shadow: 0 -10px 40px rgba(0,0,0,0.7);
+      position: absolute; bottom: calc(100% + 6px); left: 0; right: 0;
+      background: var(--bg3); border: 1px solid var(--border2);
+      border-radius: var(--radius2); max-height: 45vh; overflow-y: auto;
+      display: none; z-index: 200; box-shadow: 0 -10px 40px rgba(0,0,0,0.7);
     }
 
     .bottom-search-drop.on { display: block; }
 
     .search-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.6rem 0.75rem;
-      cursor: pointer;
-      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.6rem 0.75rem; cursor: pointer; border-bottom: 1px solid var(--border);
     }
 
     .search-item:active { background: rgba(255,255,255,0.03); }
@@ -660,17 +569,9 @@
     .bottom-nav { display: flex; gap: 0.25rem; }
 
     .bottom-nav-item {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 0.3rem 0.15rem 0.15rem;
-      cursor: pointer;
-      color: var(--text3);
-      gap: 0.1rem;
-      position: relative;
-      border-radius: 10px;
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: 0.3rem 0.15rem 0.15rem; cursor: pointer;
+      color: var(--text3); gap: 0.1rem; position: relative; border-radius: 10px;
       transition: all 0.15s;
     }
 
@@ -680,44 +581,21 @@
     .bottom-nav-item span { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.02em; }
 
     .bn-badge {
-      position: absolute;
-      top: 0;
-      right: 50%;
-      transform: translateX(14px);
-      background: var(--accent);
-      color: var(--bg);
-      font-size: 0.45rem;
-      font-weight: 700;
-      min-width: 15px; height: 15px;
-      border-radius: 50%;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 0 3px;
+      position: absolute; top: 0; right: 50%; transform: translateX(14px);
+      background: var(--accent); color: var(--bg); font-size: 0.45rem;
+      font-weight: 700; min-width: 15px; height: 15px; border-radius: 50%;
+      display: none; align-items: center; justify-content: center; padding: 0 3px;
     }
 
     .bn-badge.on { display: flex; }
 
-    /* Toast */
     .toast {
-      position: fixed;
-      top: 0.75rem;
-      left: 0.75rem;
-      right: 0.75rem;
-      max-width: 450px;
-      margin: 0 auto;
-      background: var(--bg3);
-      border: 1px solid var(--green);
-      color: var(--green2);
-      padding: 0.75rem 1rem;
-      border-radius: var(--radius);
-      z-index: 2000;
-      display: none;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 500;
-      font-size: 0.82rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      position: fixed; top: 0.75rem; left: 0.75rem; right: 0.75rem;
+      max-width: 450px; margin: 0 auto; background: var(--bg3);
+      border: 1px solid var(--green); color: var(--green2);
+      padding: 0.75rem 1rem; border-radius: var(--radius); z-index: 2000;
+      display: none; align-items: center; gap: 0.5rem; font-weight: 500;
+      font-size: 0.82rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       animation: toastIn 0.3s ease;
     }
 
@@ -730,31 +608,22 @@
   </style>
 </head>
 <body>
-  <!-- ─── Splash Loading Screen ─── -->
   <div class="splash-screen" id="splashScreen">
     <div class="splash-logo">
       <div class="splash-icon"><i class="fas fa-play"></i></div>
       <span class="splash-title">Summer<span class="splash-accent">Screens</span></span>
     </div>
-    <div class="splash-loader">
-      <div class="splash-loader-bar"></div>
-    </div>
+    <div class="splash-loader"><div class="splash-loader-bar"></div></div>
     <p class="splash-tagline">Loading your content...</p>
-    <div class="splash-dots">
-      <div class="splash-dot"></div>
-      <div class="splash-dot"></div>
-      <div class="splash-dot"></div>
-    </div>
+    <div class="splash-dots"><div class="splash-dot"></div><div class="splash-dot"></div><div class="splash-dot"></div></div>
   </div>
 
-  <!-- Toast -->
   <div class="toast" id="toast">
     <i class="fas fa-check-circle"></i>
     <span id="toastMsg"></span>
     <button class="toast-close" onclick="dismissToast()"><i class="fas fa-times"></i></button>
   </div>
 
-  <!-- Main Content -->
   <main class="main">
     <div class="home-page" id="homePage">
       <div class="section-top">
@@ -767,7 +636,6 @@
     <div class="detail-page" id="detailPage"></div>
   </main>
 
-  <!-- Bottom Bar -->
   <div class="bottom-bar" id="bottomBar">
     <div class="bottom-search-wrap">
       <div class="bottom-search-box">
@@ -778,65 +646,59 @@
       <div class="bottom-search-drop" id="searchDrop"></div>
     </div>
     <div class="bottom-nav" id="bottomNav">
-      <div class="bottom-nav-item on" data-r="home" data-f="all">
-        <i class="fas fa-fire"></i><span>Trending</span>
-      </div>
-      <div class="bottom-nav-item" data-r="home" data-f="movie">
-        <i class="fas fa-film"></i><span>Movies</span>
-      </div>
-      <div class="bottom-nav-item" data-r="home" data-f="tv">
-        <i class="fas fa-tv"></i><span>Series</span>
-      </div>
-      <div class="bottom-nav-item" data-r="fav" data-f="fav">
-        <i class="fas fa-heart"></i><span>Saved</span>
-        <span class="bn-badge" id="favBadgeMob">0</span>
-      </div>
+      <div class="bottom-nav-item on" data-r="home" data-f="all"><i class="fas fa-fire"></i><span>Trending</span></div>
+      <div class="bottom-nav-item" data-r="home" data-f="movie"><i class="fas fa-film"></i><span>Movies</span></div>
+      <div class="bottom-nav-item" data-r="home" data-f="tv"><i class="fas fa-tv"></i><span>Series</span></div>
+      <div class="bottom-nav-item" data-r="fav" data-f="fav"><i class="fas fa-heart"></i><span>Saved</span><span class="bn-badge" id="favBadgeMob">0</span></div>
     </div>
   </div>
 
-  <!-- Player -->
+  <!-- Optimized Player -->
   <div class="player-overlay" id="playerOverlay">
-    <div class="player-top">
-      <span class="player-top-title" id="playerTitle">Now Playing</span>
-      <button class="player-close" id="playerClose"><i class="fas fa-times"></i></button>
+    <div class="player-dialog">
+      <div class="player-header">
+        <div class="player-header-left">
+          <div class="player-header-icon"><i class="fas fa-play"></i></div>
+          <span class="player-header-title" id="playerTitle">Now Playing</span>
+        </div>
+        <button class="player-close-btn" id="playerClose"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="player-frame-wrap">
+        <div class="player-frame-loading" id="playerLoading">
+          <i class="fas fa-spinner"></i>
+          <span>Loading player...</span>
+        </div>
+        <iframe id="playerFrame" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+      </div>
+      <div class="player-footer">
+        <div class="player-footer-dot"></div>
+        <span class="player-footer-text">Streaming via embed provider</span>
+      </div>
     </div>
-    <iframe class="player-frame" id="playerFrame" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
   </div>
 
   <script>
-    // ========== CONFIGURATION - EDIT THESE VALUES ==========
     const CONFIG = {
-      TMDB_API_KEY: '77c1a81838fea47869506ff798f95404',
-      MOVIE_EMBED_URL: 'https://zxcstream.xyz/player/movie/{id}',
-      TV_EMBED_URL: 'https://zxcstream.xyz/player/tv/{id}/{season}/{episode}'
+      TMDB_API_KEY: 'YOUR_TMDB_API_KEY_HERE',
+      MOVIE_EMBED_URL: 'https://vidsrc.net/embed/movie/{id}',
+      TV_EMBED_URL: 'https://vidsrc.net/embed/tv/{id}/{season}/{episode}'
     };
-    // ========================================================
 
     const TMDB = 'https://api.themoviedb.org/3';
     const IMG = 'https://image.tmdb.org/t/p';
 
     const S = {
-      key: CONFIG.TMDB_API_KEY,
-      mu: CONFIG.MOVIE_EMBED_URL,
-      tu: CONFIG.TV_EMBED_URL,
+      key: CONFIG.TMDB_API_KEY, mu: CONFIG.MOVIE_EMBED_URL, tu: CONFIG.TV_EMBED_URL,
       fav: JSON.parse(localStorage.getItem('ss_f') || '[]'),
-      f: 'all', p: 1, load: false, more: true, q: '', t: null, obs: null, det: null,
-      scrollPos: 0
+      f: 'all', p: 1, load: false, more: true, q: '', t: null, obs: null, det: null, scrollPos: 0
     };
 
     const $ = s => document.querySelector(s);
     const $$ = s => document.querySelectorAll(s);
 
-    // ─── Splash Screen ───
     const hideSplash = () => {
       const splash = $('#splashScreen');
-      if (splash) {
-        splash.classList.add('hide');
-        // Remove from DOM after animation
-        setTimeout(() => {
-          if (splash.parentNode) splash.parentNode.removeChild(splash);
-        }, 500);
-      }
+      if (splash) { splash.classList.add('hide'); setTimeout(() => { if (splash.parentNode) splash.parentNode.removeChild(splash); }, 500); }
     };
 
     let tid;
@@ -932,12 +794,7 @@
       if (filter !== 'fav') { S.q = ''; $('#searchInput').value = ''; $('#searchClear').classList.remove('on'); }
       upPills(route, filter);
       if (route === 'fav') { renderFavs(); hideSplash(); return; }
-      if (!S.key || S.key === 'YOUR_TMDB_API_KEY_HERE') { 
-        $('#mediaGrid').innerHTML = `<div class="empty"><span class="empty-icon">🔑</span><p class="empty-title">API Key Needed</p><p class="empty-desc">Edit the code and add your TMDB API key</p></div>`; 
-        $('#secCount').textContent=''; 
-        hideSplash();
-        return; 
-      }
+      if (!S.key || S.key === 'YOUR_TMDB_API_KEY_HERE') { $('#mediaGrid').innerHTML = `<div class="empty"><span class="empty-icon">🔑</span><p class="empty-title">API Key Needed</p><p class="empty-desc">Edit the code and add your TMDB API key</p></div>`; $('#secCount').textContent=''; hideSplash(); return; }
       const titles = { all:'Trending Now', movie:'Popular Movies', tv:'Popular Series' };
       const icons = { all:'fa-fire', movie:'fa-film', tv:'fa-tv' };
       $('#secTitle').textContent = titles[filter]||'Trending';
@@ -951,11 +808,7 @@
         render(items);
         setupScroll();
         hideSplash();
-      } catch(e) { 
-        toast(e.message, true); 
-        $('#mediaGrid').innerHTML = `<div class="empty"><span class="empty-icon">⚠️</span><p class="empty-title">Error</p><p class="empty-desc">${e.message}</p></div>`; 
-        hideSplash();
-      }
+      } catch(e) { toast(e.message, true); $('#mediaGrid').innerHTML = `<div class="empty"><span class="empty-icon">⚠️</span><p class="empty-title">Error</p><p class="empty-desc">${e.message}</p></div>`; hideSplash(); }
     };
 
     const loadMore = async () => {
@@ -988,12 +841,7 @@
       } catch { dd.innerHTML = '<div style="padding:1rem;text-align:center;color:#fca5a5">Unavailable</div>'; dd.classList.add('on'); }
     };
 
-    window.openDFromSearch = (id, mt) => {
-      $('#searchDrop').classList.remove('on');
-      $('#searchInput').value = '';
-      $('#searchClear').classList.remove('on');
-      window.openD(id, mt);
-    };
+    window.openDFromSearch = (id, mt) => { $('#searchDrop').classList.remove('on'); $('#searchInput').value = ''; $('#searchClear').classList.remove('on'); window.openD(id, mt); };
 
     const execSearch = async () => {
       const q = $('#searchInput').value.trim();
@@ -1008,8 +856,7 @@
     };
 
     window.openD = async (id, mt) => {
-      S.scrollPos = window.scrollY;
-      S.det = { id, mt };
+      S.scrollPos = window.scrollY; S.det = { id, mt };
       window.history.pushState({ r:'det', id, mt }, '', `#/${mt}/${id}`);
       window.scrollTo({ top:0, behavior:'instant' });
       $('#homePage').classList.add('off');
@@ -1029,60 +876,21 @@
         const ov = d.overview || 'No description.';
         const fv = isFav(id, mt);
         const allSs = d._ss || [];
-        
         let html = `<div class="detail-hero" ${bg?`style="background-image:url(${bg})"`:''}>
           <button class="detail-close-btn" onclick="closeD()"><i class="fas fa-times"></i></button>
-          <div class="detail-hero-overlay"></div>
-          <div class="detail-hero-info">
-            <div class="detail-hero-poster">${poster?`<img src="${poster}" alt="">`:'<div style="aspect-ratio:2/3;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:2rem">🎬</div>'}</div>
-            <div class="detail-hero-text">
-              <h1>${t}</h1>
-              <div class="detail-hero-meta">
-                <span><i class="fas fa-star" style="color:var(--green2);font-size:0.6rem"></i> <span class="rating-g">${rating}</span></span>
-                ${rt?`<span><i class="far fa-clock"></i> ${rt}</span>`:''}
-                <span>${year}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="detail-body">
-          <div class="detail-genres">${genres.map(g=>`<span class="genre-tag">${g}</span>`).join('')}</div>
-          <p class="detail-overview">${ov}</p>
-          <div class="detail-actions">
-            <button class="btn btn-accent" onclick="playM(${id},'${mt}','${t.replace(/'/g,"\\'")}')"><i class="fas fa-play"></i> ${mt==='movie'?'Watch':'Play S01E01'}</button>
-            <button class="btn btn-ghost btn-sm" id="dFavBtn" onclick="favClk(this,${id},'${mt}','${t.replace(/'/g,"\\'")}','${poster}')"><i class="fas fa-heart"></i> ${fv?'Saved':'Save'}</button>
-          </div>
-        </div>`;
-
+          <div class="detail-hero-overlay"></div><div class="detail-hero-info">
+          <div class="detail-hero-poster">${poster?`<img src="${poster}" alt="">`:'<div style="aspect-ratio:2/3;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:2rem">🎬</div>'}</div>
+          <div class="detail-hero-text"><h1>${t}</h1><div class="detail-hero-meta"><span><i class="fas fa-star" style="color:var(--green2);font-size:0.6rem"></i> <span class="rating-g">${rating}</span></span>${rt?`<span><i class="far fa-clock"></i> ${rt}</span>`:''}<span>${year}</span></div></div></div></div>
+          <div class="detail-body"><div class="detail-genres">${genres.map(g=>`<span class="genre-tag">${g}</span>`).join('')}</div><p class="detail-overview">${ov}</p>
+          <div class="detail-actions"><button class="btn btn-accent" onclick="playM(${id},'${mt}','${t.replace(/'/g,"\\'")}')"><i class="fas fa-play"></i> ${mt==='movie'?'Watch':'Play S01E01'}</button>
+          <button class="btn btn-ghost btn-sm" id="dFavBtn" onclick="favClk(this,${id},'${mt}','${t.replace(/'/g,"\\'")}','${poster}')"><i class="fas fa-heart"></i> ${fv?'Saved':'Save'}</button></div></div>`;
         if (mt === 'tv' && allSs.length > 0) {
-          html += `<div class="seasons-section">
-            <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.4rem"><i class="fas fa-list" style="color:var(--accent)"></i> Episodes</h3>
-            <div class="season-dropdown-wrap">
-              <label>Season</label>
-              <select class="season-select" id="seasonSelect" onchange="loadEp(${id}, this.value)">
-                ${allSs.filter(s=>s).map((s,i) => `<option value="${s.season_number}" ${i===0?'selected':''}>Season ${s.season_number}${s.name ? ' - '+s.name : ''} (${s.episodes?.length||0} eps)</option>`).join('')}
-              </select>
-            </div>
-            <div class="ep-list" id="epL"><div class="empty"><i class="fas fa-spinner fa-spin" style="color:var(--accent)"></i></div></div>
-          </div>`;
-          setTimeout(() => {
-            const sel = $('#seasonSelect');
-            if (sel) loadEp(id, sel.value);
-          }, 150);
+          html += `<div class="seasons-section"><h3 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.4rem"><i class="fas fa-list" style="color:var(--accent)"></i> Episodes</h3><div class="season-dropdown-wrap"><label>Season</label><select class="season-select" id="seasonSelect" onchange="loadEp(${id}, this.value)">${allSs.filter(s=>s).map((s,i)=>`<option value="${s.season_number}" ${i===0?'selected':''}>Season ${s.season_number}${s.name?' - '+s.name:''} (${s.episodes?.length||0} eps)</option>`).join('')}</select></div><div class="ep-list" id="epL"><div class="empty"><i class="fas fa-spinner fa-spin" style="color:var(--accent)"></i></div></div></div>`;
+          setTimeout(() => { const sel = $('#seasonSelect'); if (sel) loadEp(id, sel.value); }, 150);
         } else if (mt === 'tv' && ss > 0) {
-          html += `<div class="seasons-section">
-            <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.4rem"><i class="fas fa-list" style="color:var(--accent)"></i> Episodes</h3>
-            <div class="season-dropdown-wrap">
-              <label>Season</label>
-              <select class="season-select" id="seasonSelect" onchange="loadEp(${id}, this.value)">
-                ${Array.from({length:Math.min(ss,50)},(_,i)=>i+1).map(s => `<option value="${s}" ${s===1?'selected':''}>Season ${s}</option>`).join('')}
-              </select>
-            </div>
-            <div class="ep-list" id="epL"><div class="empty"><i class="fas fa-spinner fa-spin" style="color:var(--accent)"></i></div></div>
-          </div>`;
+          html += `<div class="seasons-section"><h3 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.4rem"><i class="fas fa-list" style="color:var(--accent)"></i> Episodes</h3><div class="season-dropdown-wrap"><label>Season</label><select class="season-select" id="seasonSelect" onchange="loadEp(${id}, this.value)">${Array.from({length:Math.min(ss,50)},(_,i)=>i+1).map(s=>`<option value="${s}" ${s===1?'selected':''}>Season ${s}</option>`).join('')}</select></div><div class="ep-list" id="epL"><div class="empty"><i class="fas fa-spinner fa-spin" style="color:var(--accent)"></i></div></div></div>`;
           setTimeout(() => loadEp(id, 1), 150);
         }
-        
         dp.innerHTML = html;
       } catch(e) { toast(e.message, true); dp.innerHTML = `<div class="empty" style="margin-top:2rem"><span class="empty-icon">⚠️</span><p class="empty-title">Error</p><p class="empty-desc">${e.message}</p><button class="btn btn-accent btn-sm" onclick="closeD()">Back</button></div>`; }
     };
@@ -1093,20 +901,7 @@
       const t = $('#detailPage').querySelector('h1')?.textContent || 'Show';
       el.innerHTML = sd.episodes?.length ? sd.episodes.map(ep => {
         const still = ep.still_path ? `${IMG}/w300${ep.still_path}` : null;
-        return `<div class="ep-card" onclick="playM(${S.det.id},'tv','${t.replace(/'/g,"\\'")}',${sd.season_number},${ep.episode_number})">
-          <div class="ep-still">
-            ${still ? `<img src="${still}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='<div class=ep-still-placeholder>🎬</div>'">` : '<div class="ep-still-placeholder">🎬</div>'}
-            <div class="ep-play-overlay"><i class="fas fa-play"></i></div>
-          </div>
-          <div class="ep-info">
-            <div class="ep-num-name">
-              <div class="ep-num">${ep.episode_number}</div>
-              <div class="ep-name">${ep.name}</div>
-            </div>
-            <div class="ep-meta">${ep.runtime?ep.runtime+'m ':''}${ep.air_date||''}</div>
-            ${ep.overview?`<div class="ep-overview">${ep.overview}</div>`:''}
-          </div>
-        </div>`;
+        return `<div class="ep-card" onclick="playM(${S.det.id},'tv','${t.replace(/'/g,"\\'")}',${sd.season_number},${ep.episode_number})"><div class="ep-still">${still?`<img src="${still}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='<div class=ep-still-placeholder>🎬</div>'">`:'<div class="ep-still-placeholder">🎬</div>'}<div class="ep-play-overlay"><i class="fas fa-play"></i></div></div><div class="ep-info"><div class="ep-num-name"><div class="ep-num">${ep.episode_number}</div><div class="ep-name">${ep.name}</div></div><div class="ep-meta">${ep.runtime?ep.runtime+'m ':''}${ep.air_date||''}</div>${ep.overview?`<div class="ep-overview">${ep.overview}</div>`:''}</div></div>`;
       }).join('') : '<div class="empty"><p>No episodes found</p></div>';
     };
 
@@ -1123,31 +918,45 @@
       $('#homePage').classList.remove('off');
       $('#detailPage').classList.remove('on');
       $('#detailPage').innerHTML = '';
-      requestAnimationFrame(() => {
-        window.scrollTo({ top: S.scrollPos, behavior: 'instant' });
-      });
+      requestAnimationFrame(() => { window.scrollTo({ top: S.scrollPos, behavior: 'instant' }); });
     };
 
+    // Optimized player with loading state
     window.playM = (id, mt, t, s = 1, ep = 1) => {
       const url = mt === 'movie' ? S.mu.replace('{id}', id) : S.tu.replace('{id}', id).replace('{season}', s).replace('{episode}', ep);
-      $('#playerFrame').src = url;
+      const loadingEl = $('#playerLoading');
+      const frame = $('#playerFrame');
+      
+      // Show loading
+      if (loadingEl) loadingEl.classList.remove('hidden');
+      
+      // Set iframe source
+      frame.src = url;
       $('#playerTitle').textContent = t;
       $('#playerOverlay').classList.add('on');
       document.body.style.overflow = 'hidden';
+      
+      // Hide loading when iframe loads
+      frame.onload = () => {
+        if (loadingEl) loadingEl.classList.add('hidden');
+      };
+      
+      // Fallback: hide loading after 4 seconds
+      setTimeout(() => {
+        if (loadingEl) loadingEl.classList.add('hidden');
+      }, 4000);
     };
 
     window.closePlayer = () => {
       $('#playerOverlay').classList.remove('on');
       $('#playerFrame').src = '';
+      $('#playerLoading').classList.remove('hidden');
       document.body.style.overflow = '';
     };
 
     window.favClk = (btn, id, mt, t, poster) => {
       const added = favT({ id, mt, title:t, name:t, poster_path:poster });
-      if (btn) {
-        btn.classList.toggle('on', added);
-        if (btn.id === 'dFavBtn') btn.innerHTML = `<i class="fas fa-heart"></i> ${added?'Saved':'Save'}`;
-      }
+      if (btn) { btn.classList.toggle('on', added); if (btn.id === 'dFavBtn') btn.innerHTML = `<i class="fas fa-heart"></i> ${added?'Saved':'Save'}`; }
       toast(added ? 'Added!' : 'Removed');
     };
 
@@ -1160,57 +969,29 @@
     window.navTo = (route, filter = null) => {
       S.scrollPos = 0;
       const f = filter || 'all';
-      if (route === 'fav') {
-        S.det = null;
-        window.history.pushState({ r:'fav' }, '', '#/fav');
-        $('#homePage').classList.remove('off');
-        $('#detailPage').classList.remove('on');
-        $('#detailPage').innerHTML = '';
-        loadInit('fav', 'fav');
-        window.scrollTo({ top:0, behavior:'instant' });
-      } else {
-        S.det = null;
-        window.history.pushState({ r:'home', f }, '', f==='all'?'/':`#/${f}`);
-        $('#homePage').classList.remove('off');
-        $('#detailPage').classList.remove('on');
-        $('#detailPage').innerHTML = '';
-        loadInit('home', f);
-        window.scrollTo({ top:0, behavior:'instant' });
-      }
+      S.det = null;
+      const hash = route === 'fav' ? '#/fav' : (f === 'all' ? '/' : `#/${f}`);
+      window.history.pushState({ r: route === 'fav' ? 'fav' : 'home', f }, '', hash);
+      $('#homePage').classList.remove('off');
+      $('#detailPage').classList.remove('on');
+      $('#detailPage').innerHTML = '';
+      loadInit(route === 'fav' ? 'fav' : 'home', f);
+      window.scrollTo({ top:0, behavior:'instant' });
     };
 
-    // Events
     $('#searchInput').addEventListener('input', function() { clearTimeout(S.t); S.t = setTimeout(() => searchType(this.value), 300); });
     $('#searchInput').addEventListener('keydown', function(e) { if (e.key === 'Enter') { execSearch(); $('#searchDrop').classList.remove('on'); } });
     $('#searchClear').addEventListener('click', () => { $('#searchInput').value=''; $('#searchClear').classList.remove('on'); $('#searchDrop').classList.remove('on'); S.q=''; loadInit('home','all'); });
-
     $$('.bottom-nav-item').forEach(p => p.addEventListener('click', function() { window.navTo(this.dataset.r, this.dataset.f); }));
-
     $('#playerClose').addEventListener('click', window.closePlayer);
     $('#playerOverlay').addEventListener('click', function(e) { if (e.target === this) window.closePlayer(); });
-
     document.addEventListener('click', e => { if (!e.target.closest('.bottom-search-wrap')) $('#searchDrop').classList.remove('on'); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') { window.closePlayer(); } });
-
     window.addEventListener('popstate', e => {
-      if (e.state?.r === 'det') {
-        S.scrollPos = window.scrollY;
-        window.openD(e.state.id, e.state.mt);
-      } else {
-        const f = (e.state?.f) || 'all';
-        const route = f === 'fav' ? 'fav' : 'home';
-        S.det = null;
-        $('#homePage').classList.remove('off');
-        $('#detailPage').classList.remove('on');
-        $('#detailPage').innerHTML = '';
-        loadInit(route, f);
-        requestAnimationFrame(() => {
-          window.scrollTo({ top: S.scrollPos, behavior: 'instant' });
-        });
-      }
+      if (e.state?.r === 'det') { S.scrollPos = window.scrollY; window.openD(e.state.id, e.state.mt); }
+      else { const f = (e.state?.f) || 'all'; const route = f === 'fav' ? 'fav' : 'home'; S.det = null; $('#homePage').classList.remove('off'); $('#detailPage').classList.remove('on'); $('#detailPage').innerHTML = ''; loadInit(route, f); requestAnimationFrame(() => { window.scrollTo({ top: S.scrollPos, behavior: 'instant' }); }); }
     });
 
-    // Init
     upBadges();
     if (window.location.hash) {
       const h = window.location.hash;
