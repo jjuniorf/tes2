@@ -519,30 +519,31 @@
     };
 
     window.switchServer = (serverIdx, id, mt, sn, ep) => {
-      // Update active server
-      S.activeServer = serverIdx;
-      S.currentMediaId = id;
-      S.currentMediaType = mt;
-      S.currentSeason = sn || 1;
-      S.currentEpisode = ep || 1;
-      
-      // Only load if the player is currently visible
-      const wrap = $('#detailPlayerWrap');
-      if (wrap && wrap.classList.contains('on')) {
-        const url = getEmbedUrl(serverIdx, id, mt, S.currentSeason, S.currentEpisode);
-        const frame = $('#detailPlayerFrame');
-        const loading = $('#detailPlayerLoading');
-        if (frame) {
-          if (loading) loading.classList.remove('hidden');
-          frame.src = url;
-          frame.onload = () => { if (loading) loading.classList.add('hidden'); };
-          setTimeout(() => { if (loading) loading.classList.add('hidden'); }, 5000);
-        }
-      }
-      
-      // Update button states
-      $$('.server-btn').forEach((b, i) => b.classList.toggle('on', i === serverIdx));
-    };
+  S.activeServer = serverIdx;
+  S.currentMediaId = id;
+  S.currentMediaType = mt;
+  S.currentSeason = sn || 1;
+  S.currentEpisode = ep || 1;
+  
+  const wrap = $('#detailPlayerWrap');
+  if (wrap && wrap.classList.contains('on')) {
+    const url = getEmbedUrl(serverIdx, id, mt, S.currentSeason, S.currentEpisode);
+    const frame = $('#detailPlayerFrame');
+    const loading = $('#detailPlayerLoading');
+    if (frame) {
+      if (loading) loading.classList.remove('hidden');
+      // Clear the iframe to force a fresh load
+      frame.src = '';
+      setTimeout(() => {
+        frame.src = url;
+        frame.onload = () => { if (loading) loading.classList.add('hidden'); };
+        setTimeout(() => { if (loading) loading.classList.add('hidden'); }, 5000);
+      }, 50);
+    }
+  }
+  
+  $$('.server-btn').forEach((b, i) => b.classList.toggle('on', i === serverIdx));
+};
 
     window.showEmbedPlayer = (id, mt, sn, ep) => {
       S.currentMediaId = id;
